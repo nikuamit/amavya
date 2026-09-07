@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Amavya — AI for every Indian in every language. Find govt schemes, health info, farming data. Free, always.">
+<meta name="description" content="Amavya — AI for every Indian in every language. Find govt schemes free.">
 <title>Amavya — Born from darkness. Built for everyone.</title>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -11,11 +11,11 @@
 :root{--ink:#04040a;--panel:#111120;--edge:#1c1c2e;--saffron:#FF9933;--teal:#009688;--text:#eeeef8;--muted:#5c5c78;--soft:#20203a;--surface:#0d0d16}
 html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--text);font-family:'Mukta',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(4,4,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--edge)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(4,4,10,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--edge)}
 .brand{display:flex;align-items:center;gap:.6rem;font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none}
 .wheel{width:26px;height:26px;border:2px solid var(--saffron);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;animation:wspin 20s linear infinite}
 @keyframes wspin{to{transform:rotate(360deg)}}
-.navr{display:flex;align-items:center;gap:1.25rem}
+.navr{display:flex;align-items:center;gap:1rem}
 .navr a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:500;transition:color .15s}
 .navr a:hover{color:var(--text)}
 .ncta{background:var(--saffron)!important;color:var(--ink)!important;padding:.38rem 1rem;border-radius:20px;font-weight:700!important;font-size:.8rem!important}
@@ -39,14 +39,17 @@ h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-
 .wlform input::placeholder{color:var(--muted)}
 .wbtn{background:var(--saffron);color:var(--ink);border:none;border-radius:8px;padding:.68rem 1.3rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s;white-space:nowrap}
 .wbtn:hover{opacity:.87}.wbtn:disabled{opacity:.45;cursor:not-allowed}
-.wok{display:none;margin-top:.9rem;background:rgba(0,150,136,.12);border:1px solid rgba(0,150,136,.28);border-radius:8px;padding:.65rem 1rem;font-size:.85rem;color:#4DB6AC}
+.wok{display:none;margin-top:.9rem;background:rgba(0,150,136,.12);border:1px solid rgba(0,150,136,.28);border-radius:8px;padding:.65rem 1rem;font-size:.85rem;color:#4DB6AC;text-align:center}
 .wok.on{display:block}
-.wshare{margin-top:1rem;display:flex;align-items:center;justify-content:center}
-.wshare a{display:inline-flex;align-items:center;gap:.4rem;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.28);color:#25d366;border-radius:8px;padding:.38rem .9rem;font-size:.8rem;font-weight:600;text-decoration:none}
+.hbtns{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.1rem}
+.hbtns a,.hbtns button{display:inline-flex;align-items:center;gap:.4rem;border-radius:8px;padding:.44rem 1rem;font-size:.82rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit;border:none;transition:opacity .15s}
+.hbtns a:hover,.hbtns button:hover{opacity:.8}
+.hb1{background:rgba(255,153,51,.14);border:1px solid rgba(255,153,51,.3) !important;color:var(--saffron);border:none}
+.hb2{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.28) !important;color:#25d366;border:none}
+.hb3{background:rgba(0,150,136,.1);border:1px solid rgba(0,150,136,.28) !important;color:var(--teal);border:none}
 .vrow{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap}
-.mic{width:46px;height:46px;background:var(--panel);border:1px solid var(--edge);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;transition:border-color .15s;position:relative}
-.mic:hover{border-color:var(--saffron)}
-.mic.on{border-color:#e53935}
+.mic{width:46px;height:46px;background:var(--panel);border:1px solid var(--edge);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;position:relative;transition:border-color .15s}
+.mic:hover{border-color:var(--saffron)}.mic.on{border-color:#e53935}
 .mic.on::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid #e53935;animation:rip 1.1s ease-out infinite}
 @keyframes rip{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.55)}}
 .vlang{background:var(--panel);border:1px solid var(--edge);border-radius:6px;color:var(--muted);font-family:inherit;font-size:.8rem;padding:.3rem .6rem;outline:none}
@@ -60,11 +63,13 @@ h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-
 .ey{text-align:center;font-size:.7rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem}
 .sh{text-align:center;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.7rem}
 .ssub{text-align:center;color:var(--muted);max-width:440px;margin:0 auto 3rem;font-size:.9rem;font-weight:300;line-height:1.75}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
-.step{text-align:center;padding:1.5rem}
-.stepn{width:40px;height:40px;border-radius:50%;background:rgba(255,153,51,.12);border:1px solid rgba(255,153,51,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:var(--saffron);margin:0 auto .9rem}
-.step h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
-.step p{font-size:.84rem;color:var(--muted);line-height:1.65}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;max-width:860px;margin:0 auto}
+.step{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:1.5rem;text-align:center}
+.stepn{width:38px;height:38px;border-radius:50%;background:rgba(255,153,51,.12);border:1px solid rgba(255,153,51,.3);display:flex;align-items:center;justify-content:center;font-size:.88rem;font-weight:800;color:var(--saffron);margin:0 auto .85rem}
+.step h3{font-size:.93rem;font-weight:700;margin-bottom:.38rem}
+.step p{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:.9rem}
+.step a{display:inline-flex;align-items:center;gap:.3rem;background:var(--saffron);color:var(--ink);border-radius:7px;padding:.4rem .88rem;font-size:.78rem;font-weight:700;text-decoration:none;transition:opacity .15s}
+.step a:hover{opacity:.87}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:1040px;margin:0 auto}
 .pc{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .18s}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),var(--teal));opacity:0;transition:opacity .2s}
@@ -73,9 +78,26 @@ h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-
 .ptag{position:absolute;top:1.1rem;right:1.1rem;background:rgba(255,153,51,.13);border:1px solid rgba(255,153,51,.3);color:var(--saffron);font-size:.6rem;font-weight:700;padding:.16rem .46rem;border-radius:4px;letter-spacing:.06em}
 .pico{font-size:1.85rem;margin-bottom:.85rem;display:block}
 .pc h3{font-size:1.02rem;font-weight:700;margin-bottom:.36rem}
-.pc p{color:var(--muted);font-size:.85rem;line-height:1.65;margin-bottom:.85rem}
-.plink{font-size:.78rem;font-weight:700;color:var(--saffron);text-decoration:none;display:inline-flex;align-items:center;gap:.28rem;transition:gap .15s}
-.plink:hover{gap:.5rem}
+.pc p{color:var(--muted);font-size:.85rem;line-height:1.65;margin-bottom:.75rem}
+.pcf{list-style:none;margin-bottom:1rem}
+.pcf li{font-size:.78rem;color:var(--muted);padding:.18rem 0;display:flex;gap:.5rem;align-items:flex-start}
+.pcf li::before{content:"2713";color:var(--teal);font-weight:700;flex-shrink:0}
+.pca{display:flex;gap:.5rem;flex-wrap:wrap}
+.bp{display:inline-flex;align-items:center;gap:.3rem;background:var(--saffron);color:var(--ink);border:none;border-radius:7px;padding:.4rem .9rem;font-size:.78rem;font-weight:700;text-decoration:none;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.bp:hover{opacity:.87}
+.bs{display:inline-flex;align-items:center;gap:.3rem;background:transparent;color:var(--muted);border:1px solid var(--edge);border-radius:7px;padding:.4rem .9rem;font-size:.78rem;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit;transition:border-color .15s,color .15s}
+.bs:hover{border-color:var(--saffron);color:var(--saffron)}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(4,4,10,.88);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.modal-bg.on{display:flex}
+.modal{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:2rem;max-width:380px;width:90%;text-align:center;position:relative}
+.modal h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.modal p{font-size:.84rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.65}
+.modal form{display:flex;flex-direction:column;gap:.65rem}
+.modal input[type=email]{background:var(--ink);border:1px solid var(--edge);border-radius:8px;color:var(--text);font-family:inherit;font-size:.9rem;padding:.65rem .9rem;outline:none;transition:border-color .15s}
+.modal input:focus{border-color:var(--saffron)}
+.mclose{position:absolute;top:.9rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1}
+.mok{display:none;color:#4DB6AC;font-size:.84rem;margin-top:.5rem}
+.mok.on{display:block}
 .plg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;max-width:840px;margin:0 auto;align-items:start}
 .plan{background:var(--ink);border:1px solid var(--edge);border-radius:14px;padding:1.75rem;position:relative}
 .plan.hi{border-color:var(--saffron)}
@@ -86,27 +108,18 @@ h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-
 .pdesc{font-size:.8rem;color:var(--muted);margin-bottom:1.15rem;line-height:1.6}
 .pf{list-style:none;margin-bottom:1.35rem}
 .pf li{display:flex;gap:.52rem;align-items:flex-start;font-size:.79rem;color:var(--muted);margin-bottom:.52rem;line-height:1.5}
-.pf li::before{content:'\2713';color:var(--teal);font-weight:700;flex-shrink:0}
+.pf li::before{content:"2713";color:var(--teal);font-weight:700;flex-shrink:0}
 .pbtn{display:block;width:100%;text-align:center;border-radius:8px;padding:.65rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s;text-decoration:none;border:none}
 .plan.hi .pbtn{background:var(--saffron);color:var(--ink)}
 .plan:not(.hi) .pbtn{background:transparent;border:1px solid var(--edge);color:var(--text)}
 .pbtn:hover{opacity:.85}
-.domcomp{max-width:680px;margin:3rem auto 0;background:var(--surface);border:1px solid var(--edge);border-radius:12px;overflow:hidden}
-.domcomp h3{padding:1.2rem 1.5rem .9rem;font-size:.9rem;font-weight:700;border-bottom:1px solid var(--edge)}
-table{width:100%;border-collapse:collapse}
-th{background:var(--panel);padding:.65rem 1rem;font-size:.72rem;font-weight:700;color:var(--muted);text-align:left}
-td{padding:.7rem 1rem;font-size:.82rem;border-top:1px solid var(--edge);color:var(--muted);vertical-align:top}
-td:first-child{color:var(--text);font-weight:600}
-.yes{color:#10b981;font-weight:700}.no{color:#ef4444}
-.win{background:rgba(255,153,51,.05)}
-.rec{color:var(--saffron);font-size:.7rem;font-weight:700;display:inline-block;margin-top:.25rem}
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:900px;margin:0 auto;align-items:start}
 .il h2{font-size:clamp(1.75rem,3vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.9rem}
 .il p{color:var(--muted);font-size:.9rem;line-height:1.78;margin-bottom:1.35rem;font-weight:300}
-.tl{list-style:none}
+.tl{list-style:none;margin-bottom:1.5rem}
 .tl li{display:flex;gap:.7rem;align-items:flex-start;font-size:.85rem;color:var(--muted);margin-bottom:.82rem;line-height:1.55}
 .tl li b{color:var(--text);font-weight:600}
-.tl li::before{content:'\2192';color:var(--saffron);flex-shrink:0}
+.tl li::before{content:"2192";color:var(--saffron);flex-shrink:0}
 .iform{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:1.75rem}
 .iform h3{font-size:.93rem;font-weight:700;margin-bottom:1.35rem}
 .fld{margin-bottom:1rem}
@@ -130,11 +143,30 @@ td:first-child{color:var(--text);font-weight:600}
 footer{background:var(--panel);border-top:1px solid var(--edge);padding:1.75rem 1.5rem;text-align:center;color:var(--muted);font-size:.75rem}
 footer a{color:var(--saffron);text-decoration:none}
 footer p+p{margin-top:.4rem}
+.ftnav{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-top:.75rem}
+.ftnav a{color:var(--muted);font-size:.74rem;text-decoration:none;transition:color .15s}
+.ftnav a:hover{color:var(--saffron)}
 @media(max-width:768px){nav{padding:.7rem 1rem}.navr a:not(.ncta){display:none}.ig{grid-template-columns:1fr;gap:2.5rem}.hero{padding:7rem 1rem 4rem}}
-@media(max-width:480px){.plg,.pgrid,.steps{grid-template-columns:1fr}}
+@media(max-width:480px){.plg,.pgrid,.steps{grid-template-columns:1fr}.pca{flex-direction:column}}
 </style>
 </head>
 <body>
+
+<div class="modal-bg" id="mb">
+  <div class="modal">
+    <button class="mclose" onclick="cm()">&#x2715;</button>
+    <h3 id="mt">Get notified</h3>
+    <p id="md">Be first when this feature goes live.</p>
+    <form id="mf" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST" onsubmit="sn(event)">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <input type="hidden" name="feature" id="mfeat">
+      <input type="hidden" name="_subject" value="Amavya Notify">
+      <button type="submit" class="bp" style="width:100%;justify-content:center" id="mbtn">Notify me &#x2192;</button>
+    </form>
+    <div class="mok" id="mok">&#x2713; You are on the list!</div>
+  </div>
+</div>
+
 <nav>
   <a href="#" class="brand"><div class="wheel">&#x262F;</div>Amavya</a>
   <div class="navr">
@@ -142,151 +174,292 @@ footer p+p{margin-top:.4rem}
     <a href="#products">Products</a>
     <a href="#pricing">Plans</a>
     <a href="#invest">Invest</a>
-    <a href="sarkar.html" class="ncta">Try Sarkar</a>
+    <a href="sarkar.html" class="ncta">Try Sarkar &#x2192;</a>
   </div>
 </nav>
+
 <section class="hero">
   <div class="hglow"></div>
-  <div class="chip"><div class="dot"></div>Live demo &middot; amavya.vercel.app &middot; Made in India &#x1F1EE;&#x1F1F3;</div>
+  <div class="chip"><div class="dot"></div>Live &#xB7; amavya.vercel.app &#xB7; Made in India &#x1F1EE;&#x1F1F3;</div>
   <h1>AI for <span class="s">every</span> Indian,<br>in <span class="t">every language.</span></h1>
-  <p class="hsub">Government schemes, health, farming, business &mdash; <strong>in your mother tongue.</strong> For the 1.4 billion who deserve better.</p>
+  <p class="hsub">Govt schemes, health, farming, business &#x2014; <strong>in your mother tongue.</strong> Free. Always.</p>
   <div class="ribbon"><div class="rtrack" id="rt"></div></div>
   <div class="wl">
-    <form id="wf" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST" onsubmit="doWait(event)" class="wlform">
+    <form id="wf" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST" onsubmit="dw(event)" class="wlform">
       <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
       <input type="hidden" name="_subject" value="Amavya Waitlist">
-      <button type="submit" class="wbtn" id="wb">Get early access &mdash; free</button>
+      <button type="submit" class="wbtn" id="wb">Get early access &#x2014; free</button>
     </form>
-    <div class="wok" id="wo">&#x1F312; You're in. We'll reach you soon.</div>
-    <div class="wshare"><a href="https://wa.me/?text=Try%20Amavya%20%E2%80%94%20AI%20for%20every%20Indian%20in%20your%20language%3A%20https%3A%2F%2Famavya.vercel.app" target="_blank" rel="noopener">&#x1F4F2; Share on WhatsApp</a></div>
+    <div class="wok" id="wo">&#x1F312; You are in. We will reach you soon.</div>
+  </div>
+  <div class="hbtns">
+    <a href="sarkar.html" class="hb1">&#x1F3DB;&#xFE0F; Try Sarkar free</a>
+    <a href="https://wa.me/?text=Try%20Amavya%20%E2%80%94%20AI%20for%20every%20Indian%3A%20https%3A%2F%2Famavya.vercel.app" target="_blank" rel="noopener" class="hb2">&#x1F4F2; Share on WhatsApp</a>
+    <a href="#invest" class="hb3">&#x1F4BC; Investor pitch</a>
   </div>
   <div class="vrow">
-    <button class="mic" id="micBtn" onclick="toggleVoice()">&#x1F399;&#xFE0F;</button>
+    <button class="mic" id="micBtn" onclick="tv()">&#x1F399;&#xFE0F;</button>
     <select class="vlang" id="vl">
       <option value="hi-IN">&#x939;&#x93F;&#x928;&#x94D;&#x926;&#x940;</option>
       <option value="en-IN" selected>English (IN)</option>
       <option value="bn-IN">&#x9AC;&#x9BE;&#x982;&#x9B2;&#x9BE;</option>
       <option value="te-IN">&#x0C24;&#x0C46;&#x0C32;&#x0C41;&#x0C17;&#x0C41;</option>
-      <option value="mr-IN">&#x92E;&#x930;&#x93E;&#x920;&#x940;</option>
-      <option value="ta-IN">&#xBB4;&#xBBF;&#xBB4;&#xBCD;</option>
-      <option value="gu-IN">&#xA97;&#xAC1;&#xA9C;&#xAB0;&#xABE;&#xAA4;&#xAAF;</option>
-      <option value="kn-IN">&#xC95;&#xCA8;&#xCCD;&#xCA8;&#xCB0;</option>
-      <option value="pa-IN">&#xA2A;&#xA70;&#xA1C;&#xA3E;&#xA2C;&#xA40;</option>
-      <option value="or-IN">&#xB13;&#xB5C;&#xB3C;&#xB3F;&#xB06;</option>
-      <option value="ml-IN">&#xD2E;&#xD32;&#xD2F;&#xD3E;&#xD33;&#xD02;</option>
+      <option value="mr-IN">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</option>
+      <option value="ta-IN">&#x0BA4;&#x0BAE;&#x0BBF;&#x0BB4;&#x0BCD;</option>
+      <option value="gu-IN">&#x0A97;&#x0AC1;&#x0A9C;&#x0AB0;&#x0ABE;&#x0AA4;&#x0AC0;</option>
+      <option value="kn-IN">&#x0C95;&#x0CA8;&#x0CCD;&#x0CA8;&#x0CA1;</option>
+      <option value="pa-IN">&#x0A2A;&#x0A70;&#x0A1C;&#x0A3E;&#x0A2C;&#x0A40;</option>
+      <option value="or-IN">&#x0B13;&#x0B5C;&#x0B3C;&#x0B3F;&#x0B06;</option>
+      <option value="ml-IN">&#x0D2E;&#x0D32;&#x0D2F;&#x0D3E;&#x0D33;&#x0D02;</option>
     </select>
-    <span class="vst" id="vs">Tap to speak in your language</span>
+    <span class="vst" id="vs">Tap to speak &#x2014; find schemes in your language</span>
   </div>
 </section>
+
 <div class="stats">
   <div class="sgrid">
     <div><div class="sn">1.4B</div><div class="sl">Indians we serve</div></div>
     <div><div class="sn">22</div><div class="sl">Official languages</div></div>
     <div><div class="sn">3,000+</div><div class="sl">Govt schemes mapped</div></div>
-    <div><div class="sn">&#x20B9;0</div><div class="sl">Cost to citizens &mdash; always</div></div>
+    <div><div class="sn">&#x20B9;0</div><div class="sl">Cost to citizens &#x2014; always</div></div>
   </div>
 </div>
+
 <section class="sec" id="how">
   <div class="ey">How it works</div>
   <h2 class="sh">Three steps. Your language. Your rights.</h2>
-  <p class="ssub">No paperwork. No English. No middleman. Just answers.</p>
+  <p class="ssub">No paperwork. No English. No middleman. Just answers in 30 seconds.</p>
   <div class="steps">
-    <div class="step"><div class="stepn">1</div><h3>Tell us about yourself</h3><p>State, occupation, income, age &mdash; in your language or by voice. Takes 60 seconds.</p></div>
-    <div class="step"><div class="stepn">2</div><h3>AI matches your profile</h3><p>We search 3,000+ central and state govt schemes for everything you qualify for &mdash; instantly.</p></div>
-    <div class="step"><div class="stepn">3</div><h3>Get your list + apply links</h3><p>Every scheme, the benefit amount, and the direct official link to apply &mdash; in your language.</p></div>
+    <div class="step"><div class="stepn">1</div><h3>Tell us about yourself</h3><p>State, age, income, occupation &#x2014; type or speak in your language.</p><a href="sarkar.html">Start now &#x2192;</a></div>
+    <div class="step"><div class="stepn">2</div><h3>AI matches your profile</h3><p>We search 3,000+ central and state govt schemes for you &#x2014; instantly.</p><a href="sarkar.html">See how &#x2192;</a></div>
+    <div class="step"><div class="stepn">3</div><h3>Get results + apply</h3><p>Every scheme, benefit amount, and the direct official apply link &#x2014; in your language.</p><a href="sarkar.html">Try free &#x2192;</a></div>
   </div>
 </section>
-<section class="sec" id="products">
+
+<section class="sec alt" id="products">
   <div class="ey">Six pillars</div>
   <h2 class="sh">One mission. Every Indian.</h2>
-  <p class="ssub">Governance to health, farming to business &mdash; AI that works for you, right now.</p>
+  <p class="ssub">Governance to health, farming to business &#x2014; AI in your language, right now.</p>
   <div class="pgrid">
-    <div class="pc hi"><span class="ptag">LIVE NOW</span><span class="pico">&#x1F3DB;&#xFE0F;</span><h3>Amavya Sarkar</h3><p>Find every PM scheme, state welfare programme, and subsidy you qualify for &mdash; in your language, in 30 seconds. No middleman. No bribe. No English required.</p><a href="sarkar.html" class="plink">Try it free &#x2192;</a></div>
-    <div class="pc"><span class="pico">&#x1F32A;&#xFE0F;</span><h3>Amavya Raksha</h3><p>Hyperlocal cyclone, flood, and drought alerts reaching the last mile by voice and SMS. Life-saving information for those with the most to lose.</p><a href="#invest" class="plink">Join waitlist &#x2192;</a></div>
-    <div class="pc"><span class="pico">&#x1F33E;</span><h3>Amavya Krushi</h3><p>Live mandi prices, MSP alerts, weather, and crop advisory for 100 million farmers &mdash; in their dialect, not Delhi's language.</p><a href="#invest" class="plink">Join waitlist &#x2192;</a></div>
-    <div class="pc"><span class="pico">&#x1F3EA;</span><h3>Amavya Vyapar</h3><p>WhatsApp-native data analyst for 63 million MSMEs. Sales tracking, GST reminders, inventory insights &mdash; no data team needed.</p><a href="#invest" class="plink">Join waitlist &#x2192;</a></div>
-    <div class="pc"><span class="pico">&#x1FA7A;</span><h3>Amavya Swastha</h3><p>Describe symptoms in any language. Get nearest care, AYUSH options, and Ayushman Bharat eligibility &mdash; no English, no Google.</p><a href="#invest" class="plink">Join waitlist &#x2192;</a></div>
-    <div class="pc"><span class="pico">&#x1F399;&#xFE0F;</span><h3>Amavya Vani</h3><p>One tap, speak, get answers. Voice-first AI for 300 million Indians who cannot type &mdash; in any of 22 languages.</p><a href="#invest" class="plink">Join waitlist &#x2192;</a></div>
+    <div class="pc hi">
+      <span class="ptag">LIVE NOW</span>
+      <span class="pico">&#x1F3DB;&#xFE0F;</span>
+      <h3>Amavya Sarkar</h3>
+      <p>Find every PM scheme, state welfare programme and subsidy you qualify for &#x2014; in 30 seconds. No middleman. No bribe. No English.</p>
+      <ul class="pcf">
+        <li>PM-KISAN, PMAY, Mudra, PMJAY + 3,000 more</li>
+        <li>All 22 Indian languages + voice input</li>
+        <li>Direct apply links to official portals</li>
+        <li>SC/ST/OBC/Women/BPL/PwD matching</li>
+      </ul>
+      <div class="pca">
+        <a href="sarkar.html" class="bp">Try free &#x2192;</a>
+        <a href="https://wa.me/?text=Find%20govt%20schemes%20you%20qualify%20for%3A%20https%3A%2F%2Famavya.vercel.app%2Fsarkar.html" target="_blank" rel="noopener" class="bs">&#x1F4F2; Share</a>
+      </div>
+    </div>
+    <div class="pc">
+      <span class="pico">&#x1F32A;&#xFE0F;</span>
+      <h3>Amavya Raksha</h3>
+      <p>Hyperlocal cyclone, flood and drought alerts at the last mile by voice and SMS.</p>
+      <ul class="pcf">
+        <li>IMD and NDMA real-time integration</li>
+        <li>Voice alerts in local language and dialect</li>
+        <li>SMS fallback for no-internet areas</li>
+        <li>District and block level precision</li>
+      </ul>
+      <div class="pca">
+        <button class="bp" onclick="om('Amavya Raksha','Get notified when disaster alert AI launches.')">Notify me &#x2192;</button>
+        <a href="#invest" class="bs">Learn more</a>
+      </div>
+    </div>
+    <div class="pc">
+      <span class="pico">&#x1F33E;</span>
+      <h3>Amavya Krushi</h3>
+      <p>Live mandi prices, MSP alerts, weather and crop advisory for 100 million farmers in their dialect.</p>
+      <ul class="pcf">
+        <li>Live AGMARKNET mandi prices</li>
+        <li>MSP alerts and PM-KISAN reminders</li>
+        <li>7-day hyper-local weather forecast</li>
+        <li>Crop disease Q&A in your language</li>
+      </ul>
+      <div class="pca">
+        <button class="bp" onclick="om('Amavya Krushi','Get notified when farming AI launches.')">Notify me &#x2192;</button>
+        <a href="#invest" class="bs">Learn more</a>
+      </div>
+    </div>
+    <div class="pc">
+      <span class="pico">&#x1F3EA;</span>
+      <h3>Amavya Vyapar</h3>
+      <p>WhatsApp-native data analyst for 63 million MSMEs. Sales, GST, inventory &#x2014; no English, no Tally.</p>
+      <ul class="pcf">
+        <li>WhatsApp-based daily sales log</li>
+        <li>Auto GST calculation and reminders</li>
+        <li>Inventory low-stock alerts</li>
+        <li>Business scheme eligibility finder</li>
+      </ul>
+      <div class="pca">
+        <button class="bp" onclick="om('Amavya Vyapar','Get notified when MSME WhatsApp tool launches at Rs 499/month.')">Notify me &#x2192;</button>
+        <a href="#pricing" class="bs">See pricing</a>
+      </div>
+    </div>
+    <div class="pc">
+      <span class="pico">&#x1FA7A;</span>
+      <h3>Amavya Swastha</h3>
+      <p>Describe symptoms in any language. Get nearest care and Ayushman Bharat eligibility instantly.</p>
+      <ul class="pcf">
+        <li>Symptom checker in 22 languages</li>
+        <li>Nearest govt hospital and PHC locator</li>
+        <li>Ayushman Bharat eligibility check</li>
+        <li>ASHA and ANM contact finder</li>
+      </ul>
+      <div class="pca">
+        <button class="bp" onclick="om('Amavya Swastha','Get notified when health AI launches.')">Notify me &#x2192;</button>
+        <a href="#invest" class="bs">Learn more</a>
+      </div>
+    </div>
+    <div class="pc">
+      <span class="pico">&#x1F399;&#xFE0F;</span>
+      <h3>Amavya Vani</h3>
+      <p>One tap, speak, get answers. Voice-first AI for 300 million Indians who cannot type.</p>
+      <ul class="pcf">
+        <li>Fully voice-operated, zero typing needed</li>
+        <li>All 22 languages plus dialects</li>
+        <li>Works on 2G and feature phones via IVR</li>
+        <li>Offline-first for low connectivity areas</li>
+      </ul>
+      <div class="pca">
+        <button class="bp" onclick="om('Amavya Vani','Get notified when voice AI launches.')">Notify me &#x2192;</button>
+        <a href="#invest" class="bs">Learn more</a>
+      </div>
+    </div>
   </div>
 </section>
-<section class="sec alt" id="pricing">
+
+<section class="sec" id="pricing">
   <div class="ey">Plans</div>
   <h2 class="sh">Free for citizens. Revenue from builders.</h2>
-  <p class="ssub">Citizens always pay nothing. Governments, NGOs, and developers pay for API and white-label deployments.</p>
+  <p class="ssub">Citizens always pay nothing. Governments and developers pay for API access.</p>
   <div class="plg">
-    <div class="plan"><div class="pname">Nagarik</div><div class="pprice">&#x20B9;0 <span>/ forever</span></div><div class="pdesc">Every Indian. No login. No catch.</div><ul class="pf"><li>Amavya Sarkar &mdash; scheme finder</li><li>All 22 Indian languages</li><li>Voice input and output</li><li>Health and farming info</li><li>SMS fallback for feature phones</li></ul><a href="sarkar.html" class="pbtn">Start free</a></div>
-    <div class="plan hi"><div class="pbadge">COMING NEXT</div><div class="pname">Vyapar</div><div class="pprice">&#x20B9;499 <span>/ month</span></div><div class="pdesc">MSMEs and small businesses.</div><ul class="pf"><li>Everything in Nagarik</li><li>WhatsApp business dashboard</li><li>Sales, GST, inventory tracking</li><li>Business scheme eligibility</li><li>Priority support in your language</li><li>Export to Excel / PDF</li></ul><a href="#invest" class="pbtn">Join waitlist</a></div>
-    <div class="plan"><div class="pname">API / Sarkar</div><div class="pprice">Custom</div><div class="pdesc">Governments, NGOs, banks, developers.</div><ul class="pf"><li>White-label deployment</li><li>REST API from &#x20B9;0.50/query</li><li>Custom language packs</li><li>SLA and uptime guarantee</li><li>Dedicated implementation</li></ul><a href="#invest" class="pbtn">Talk to Amit</a></div>
-  </div>
-  <div class="domcomp">
-    <h3>&#x1F310; Domain: amavya.in vs amavya.ai</h3>
-    <table>
-      <thead><tr><th>Factor</th><th>amavya.in</th><th>amavya.ai</th></tr></thead>
-      <tbody>
-        <tr class="win"><td>Price<div class="rec">&#x2605; Buy now</div></td><td class="yes">&#x20B9;700&ndash;900/year</td><td class="no">~&#x20B9;13,400 upfront (2-yr min)</td></tr>
-        <tr><td>Minimum period</td><td class="yes">1 year</td><td class="no">2 years (registry rule)</td></tr>
-        <tr><td>Investor signal</td><td>Strong &mdash; Made in India</td><td class="yes">Stronger &mdash; instant AI brand</td></tr>
-        <tr><td>User trust in India</td><td class="yes">High &mdash; familiar TLD</td><td>Good, less familiar</td></tr>
-        <tr class="win"><td>Verdict</td><td class="yes">Buy today (&#x20B9;700)<div class="rec">&#x2713; Launch on this</div></td><td>Buy after first revenue<div class="rec">&#x2192; Upgrade when funded</div></td></tr>
-      </tbody>
-    </table>
+    <div class="plan">
+      <div class="pname">Nagarik</div>
+      <div class="pprice">&#x20B9;0 <span>/ forever</span></div>
+      <div class="pdesc">Every Indian. No login. No catch.</div>
+      <ul class="pf">
+        <li>Sarkar &#x2014; scheme finder</li>
+        <li>All 22 Indian languages</li>
+        <li>Voice input and output</li>
+        <li>Health and farming info</li>
+        <li>SMS fallback for feature phones</li>
+      </ul>
+      <a href="sarkar.html" class="pbtn">Start free now</a>
+    </div>
+    <div class="plan hi">
+      <div class="pbadge">COMING NEXT</div>
+      <div class="pname">Vyapar</div>
+      <div class="pprice">&#x20B9;499 <span>/ month</span></div>
+      <div class="pdesc">MSMEs, kirana shops, small businesses.</div>
+      <ul class="pf">
+        <li>Everything in Nagarik</li>
+        <li>WhatsApp business dashboard</li>
+        <li>Sales, GST, inventory tracking</li>
+        <li>Business scheme eligibility</li>
+        <li>Priority support in your language</li>
+        <li>Excel and PDF export</li>
+      </ul>
+      <button class="pbtn" onclick="om('Vyapar Plan','Join the waitlist for Amavya Vyapar at Rs 499/month.')">Join waitlist</button>
+    </div>
+    <div class="plan">
+      <div class="pname">API / Sarkar</div>
+      <div class="pprice">Custom</div>
+      <div class="pdesc">Governments, NGOs, banks, developers.</div>
+      <ul class="pf">
+        <li>White-label deployment</li>
+        <li>REST API from &#x20B9;0.50/query</li>
+        <li>Custom language packs</li>
+        <li>SLA and uptime guarantee</li>
+        <li>Dedicated implementation</li>
+      </ul>
+      <a href="#invest" class="pbtn">Talk to Amit</a>
+    </div>
   </div>
 </section>
-<section class="sec" id="invest">
+
+<section class="sec alt" id="invest">
   <div class="ig">
     <div class="il">
       <div class="ey" style="text-align:left;margin-bottom:.55rem">For Investors</div>
       <h2>The largest untapped AI market on earth.</h2>
-      <p>99% of AI is built for English speakers. India has 1.4 billion people &mdash; only 10% speak English. That gap is Amavya's entire market.</p>
-      <p>We are building the operating system for India's next 500 million internet users: voice-first, multilingual, rooted in problems governments are already paying billions to solve.</p>
+      <p>99% of AI is built for English speakers. India has 1.4 billion people &#x2014; only 10% speak English. That gap is Amavya&#x2019;s entire market. Nobody has built the infrastructure for it yet.</p>
+      <p>We are building the operating system for India&#x2019;s next 500 million internet users: voice-first, multilingual, solving problems governments already pay billions to address.</p>
       <ul class="tl">
-        <li><b>Live product:</b> amavya.vercel.app &mdash; built in one night, fully deployed</li>
-        <li><b>Sarkar MVP live:</b> Claude API scheme finder, 22 languages</li>
-        <li><b>Founder:</b> 9+ years data engineering &mdash; Eli Lilly, Infosys/Daimler, Kenko AI</li>
+        <li><b>Live product:</b> amavya.vercel.app &#x2014; built in one night, fully deployed</li>
+        <li><b>Sarkar MVP:</b> Claude API scheme finder, 22 languages, live now</li>
+        <li><b>Founder:</b> 9+ years data engineering &#x2014; Eli Lilly, Infosys/Daimler, Kenko AI</li>
         <li><b>Market:</b> &#x20B9;30L Cr+ in unclaimed welfare annually</li>
-        <li><b>Stack:</b> Python, PySpark, AWS, Claude API &mdash; production-grade day one</li>
-        <li><b>Ask:</b> Pre-seed &#x20B9;50L&ndash;&#x20B9;1Cr to hire 2 engineers and scale Sarkar</li>
+        <li><b>Stack:</b> Python, PySpark, AWS, Claude API &#x2014; production-grade day one</li>
+        <li><b>Ask:</b> Pre-seed &#x20B9;50L&#x2013;&#x20B9;1Cr to hire 2 engineers and scale Sarkar</li>
       </ul>
+      <div style="display:flex;gap:.65rem;flex-wrap:wrap">
+        <a href="https://linkedin.com/in/aks1993/" target="_blank" rel="noopener" class="bp">&#x1F4BC; Connect on LinkedIn</a>
+        <a href="#invest" class="bs">Request deck &#x2192;</a>
+      </div>
     </div>
     <div class="iform">
       <h3>Request our pitch deck</h3>
-      <form id="pf" action="https://formspree.io/f/REPLACE_INVEST_ID" method="POST" onsubmit="doPitch(event)">
+      <form id="pf" action="https://formspree.io/f/REPLACE_INVEST_ID" method="POST" onsubmit="dp(event)">
         <input type="hidden" name="_subject" value="Amavya Investor Inquiry">
         <div class="fld"><label>Your name</label><input type="text" name="name" placeholder="Priya Mehta" required></div>
         <div class="fld"><label>Organisation</label><input type="text" name="org" placeholder="Blume Ventures" required></div>
         <div class="fld"><label>Email</label><input type="email" name="email" placeholder="priya@fund.in" required></div>
         <div class="fld"><label>I am a...</label><select name="type"><option>Angel Investor</option><option>VC / Institutional Fund</option><option>Corporate / Strategic</option><option>Startup India / Govt Grant</option><option>Accelerator / Incubator</option></select></div>
         <div class="fld"><label>Message</label><textarea name="msg" placeholder="What excites you about Amavya..."></textarea></div>
-        <div class="iok" id="io">&#x2713; Received. Amit will reply within 24 hours.</div>
+        <div class="iok" id="io">&#x2713; Received. Amit replies within 24 hours.</div>
         <button type="submit" class="isub" id="ib">Send deck request</button>
       </form>
     </div>
   </div>
 </section>
+
 <section class="founder">
   <div class="fav">A</div>
   <h3>Amit Kumar Sahu</h3>
-  <div class="ftitle">Founder, Amavya &middot; Senior Data Engineer &middot; Odisha &#x2192; Bengaluru</div>
-  <p class="fbio">9+ years building data platforms at Eli Lilly, Infosys (Daimler AG), Kenko AI, and SpanIdea. Studied at Jawahar Navodaya Vidyalaya, Sarang and VSSUT. Building Amavya because I have seen what happens when the government does not speak your language &mdash; and neither does AI.</p>
+  <div class="ftitle">Founder, Amavya &#xB7; Senior Data Engineer &#xB7; Odisha &#x2192; Bengaluru</div>
+  <p class="fbio">9+ years building data platforms at Eli Lilly, Infosys (Daimler AG), Kenko AI and SpanIdea. Studied at Jawahar Navodaya Vidyalaya, Sarang and VSSUT. Building Amavya because I have seen what happens when the government does not speak your language &#x2014; and neither does AI.</p>
   <div class="flinks">
     <a href="https://linkedin.com/in/aks1993/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/nikuamit" target="_blank" rel="noopener">GitHub</a>
     <a href="sarkar.html">Try Sarkar</a>
-    <a href="#invest">Invest in Amavya</a>
+    <a href="#invest">Invest</a>
+    <a href="https://wa.me/?text=Try%20Amavya%20%E2%80%94%20AI%20for%20every%20Indian%3A%20https%3A%2F%2Famavya.vercel.app" target="_blank" rel="noopener">Share</a>
   </div>
 </section>
+
 <footer>
   <p>&#x1F1EE;&#x1F1F3; Built in India, for India and the world.</p>
-  <p>&copy; 2026 Amavya &middot; Founded by <a href="https://linkedin.com/in/aks1993/">Amit Kumar Sahu</a> &middot; <a href="sarkar.html">Sarkar</a> &middot; <a href="#pricing">Plans</a> &middot; <a href="#invest">Investors</a></p>
+  <p>&#xA9; 2026 Amavya &#xB7; Founded by <a href="https://linkedin.com/in/aks1993/">Amit Kumar Sahu</a></p>
+  <div class="ftnav">
+    <a href="sarkar.html">Sarkar</a>
+    <a href="#how">How it works</a>
+    <a href="#products">Products</a>
+    <a href="#pricing">Plans</a>
+    <a href="#invest">Investors</a>
+    <a href="https://github.com/nikuamit/amavya" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/aks1993/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
 </footer>
+
 <script>
 const L=['English','\u0939\u093f\u0928\u094d\u0926\u0940','\u09ac\u09be\u0982\u09b2\u09be','\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41','\u092e\u0930\u093e\u0920\u0940','\u0ba4\u0bae\u0bbf\u0bb4\u0bcd','\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0','\u0c95\u0ca8\u0ccd\u0ca8\u0ca1','\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40','\u0b13\u0b5c\u0b3c\u0b3f\u0b06','\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02','\u0985\u09b8\u09ae\u09c0\u09af\u09bc\u09be','\u0627\u0631\u062f\u0648','\u092e\u0948\u0925\u093f\u0932\u0940','\u0915\u094b\u0902\u0915\u0923\u0940','\u0921\u094b\u0917\u0930\u0940','\u0928\u0947\u092a\u093e\u0932\u0940','\u0938\u0902\u0938\u094d\u0915\u0943\u0924\u092e\u094d','\u1c65\u1c5f\u1c71\u1c5b\u1c62\u1c64','\u09ae\u09a3\u09bf\u09aa\u09c1\u09b0\u09c0','\u0633\u0646\u0688\u06cc','\u06a9\u06c2\u0634\u064f\u0631'];
 const rt=document.getElementById('rt');
 [...L,...L].forEach(l=>{const d=document.createElement('div');d.className='ltag';d.textContent=l;rt.appendChild(d)});
-async function doWait(e){e.preventDefault();const b=document.getElementById('wb');b.disabled=true;b.textContent='Joining...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){e.target.style.display='none';document.getElementById('wo').classList.add('on')}else{b.disabled=false;b.textContent='Get early access — free'}}catch{b.disabled=false;b.textContent='Get early access — free'}}
-async function doPitch(e){e.preventDefault();const b=document.getElementById('ib');b.disabled=true;b.textContent='Sending...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){document.getElementById('io').classList.add('on');b.textContent='Sent ✓'}else{b.disabled=false;b.textContent='Send deck request'}}catch{b.disabled=false;b.textContent='Send deck request'}}
+async function dw(e){e.preventDefault();const b=document.getElementById('wb');b.disabled=true;b.textContent='Joining...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){e.target.style.display='none';document.getElementById('wo').classList.add('on')}else{b.disabled=false;b.textContent='Get early access \u2014 free'}}catch{b.disabled=false;b.textContent='Get early access \u2014 free'}}
+async function dp(e){e.preventDefault();const b=document.getElementById('ib');b.disabled=true;b.textContent='Sending...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){document.getElementById('io').classList.add('on');b.textContent='Sent \u2713'}else{b.disabled=false;b.textContent='Send deck request'}}catch{b.disabled=false;b.textContent='Send deck request'}}
+function om(t,d){document.getElementById('mt').textContent=t;document.getElementById('md').textContent=d;document.getElementById('mfeat').value=t;document.getElementById('mok').classList.remove('on');document.getElementById('mbtn').disabled=false;document.getElementById('mbtn').textContent='Notify me \u2192';document.getElementById('mb').classList.add('on')}
+function cm(){document.getElementById('mb').classList.remove('on')}
+document.getElementById('mb').addEventListener('click',function(e){if(e.target===this)cm()})
+async function sn(e){e.preventDefault();const b=document.getElementById('mbtn');b.disabled=true;b.textContent='Saving...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){document.getElementById('mok').classList.add('on');b.textContent='Done \u2713'}else{b.disabled=false;b.textContent='Notify me \u2192'}}catch{b.disabled=false;b.textContent='Notify me \u2192'}}
 let rec=null,alive=false;
-function toggleVoice(){const A=window.SpeechRecognition||window.webkitSpeechRecognition;if(!A){document.getElementById('vs').textContent='Use Chrome for voice';return}if(alive){rec.stop();return}rec=new A();rec.lang=document.getElementById('vl').value;rec.interimResults=false;rec.onstart=()=>{alive=true;document.getElementById('micBtn').classList.add('on');document.getElementById('vs').textContent='Listening...'};rec.onresult=ev=>{const t=ev.results[0][0].transcript;document.getElementById('vs').textContent='"'+t+'"';setTimeout(()=>{window.location.href='sarkar.html?q='+encodeURIComponent(t)},800)};rec.onerror=ev=>{document.getElementById('vs').textContent='Error: '+ev.error};rec.onend=()=>{alive=false;document.getElementById('micBtn').classList.remove('on')};rec.start()}
+function tv(){const A=window.SpeechRecognition||window.webkitSpeechRecognition;if(!A){document.getElementById('vs').textContent='Use Chrome for voice';return}if(alive){rec.stop();return}rec=new A();rec.lang=document.getElementById('vl').value;rec.interimResults=false;rec.onstart=()=>{alive=true;document.getElementById('micBtn').classList.add('on');document.getElementById('vs').textContent='Listening...'};rec.onresult=ev=>{const t=ev.results[0][0].transcript;document.getElementById('vs').textContent='"'+t+'"';setTimeout(()=>{window.location.href='sarkar.html?q='+encodeURIComponent(t)},800)};rec.onerror=ev=>{document.getElementById('vs').textContent='Error: '+ev.error};rec.onend=()=>{alive=false;document.getElementById('micBtn').classList.remove('on')};rec.start()}
 </script>
 </body>
 </html>
