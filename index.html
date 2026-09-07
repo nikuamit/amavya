@@ -3,105 +3,301 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Amavya — AI for every Indian in every language. Find govt schemes, health info, farming data. Free, always.">
+<meta property="og:title" content="Amavya — Born from darkness. Built for everyone.">
+<meta property="og:description" content="AI for 1.4 billion Indians. 22 languages. Always free.">
+<meta property="og:url" content="https://amavya.vercel.app">
 <title>Amavya — Born from darkness. Built for everyone.</title>
-<meta name="author" content="Amit Kumar Sahu">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#fafafa;font-family:system-ui,sans-serif;min-height:100vh}
-nav{padding:1.25rem 2rem;display:flex;justify-content:space-between;border-bottom:0.5px solid #222}
-.logo{font-size:1.1rem;font-weight:600;letter-spacing:.05em}.logo span{color:#6c47d9}
-.hero{max-width:720px;margin:0 auto;padding:6rem 2rem;text-align:center}
-.moon{font-size:3rem;margin-bottom:1.5rem;display:block}
-h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:1.25rem}
-h1 span{color:#6c47d9}
-.sub{font-size:1.05rem;color:#aaa;line-height:1.7;max-width:560px;margin:0 auto 2.5rem}
-.waitlist{display:flex;gap:.75rem;max-width:420px;margin:0 auto 1rem;flex-wrap:wrap;justify-content:center}
-.waitlist input{flex:1;min-width:220px;padding:.75rem 1rem;border-radius:8px;border:0.5px solid #333;background:#111;color:#fafafa;font-size:.95rem;outline:none}
-.waitlist input:focus{border-color:#6c47d9}
-.waitlist button{padding:.75rem 1.5rem;border-radius:8px;background:#6c47d9;color:#fff;font-size:.95rem;font-weight:500;border:none;cursor:pointer}
-.lang-select{margin:1rem auto;display:flex;justify-content:center}
-.lang-select select{padding:.5rem 1rem;border-radius:8px;background:#111;color:#fafafa;border:0.5px solid #333;font-size:.9rem}
-.langs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:2rem auto 0;max-width:640px}
-.lang-pill{padding:.3rem .75rem;border-radius:999px;border:0.5px solid #333;font-size:.78rem;color:#888;background:#111}
-.voice-btn{margin:1.5rem auto 0;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:999px;background:#1a1a1a;border:0.5px solid #6c47d9;color:#6c47d9;font-size:.9rem;cursor:pointer;width:fit-content}
-.pillars{max-width:900px;margin:4rem auto;padding:0 2rem}
-.pillars-label{text-align:center;font-size:.78rem;letter-spacing:.12em;color:#555;margin-bottom:2rem;text-transform:uppercase}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-.card{background:#111;border:0.5px solid #222;border-radius:12px;padding:1.5rem}
-.card-icon{font-size:1.5rem;margin-bottom:.75rem;display:block}
-.card-name{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
-.card-name span{color:#6c47d9}
-.card p{font-size:.82rem;color:#666;line-height:1.6}
-.founder{text-align:center;padding:4rem 2rem 6rem;border-top:0.5px solid #111}
-.founder p{font-size:.82rem;color:#444;line-height:1.8}
-.founder a{color:#555;text-decoration:none}
-.copyright{font-size:.72rem;color:#333;margin-top:1rem}
-#success-msg{display:none;color:#7cfc00;font-size:.85rem;margin-top:.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#04040a;--surface:#0d0d16;--panel:#111120;--edge:#1c1c2e;--saffron:#FF9933;--teal:#009688;--green:#10b981;--text:#eeeef8;--muted:#5c5c78;--soft:#20203a}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:'Mukta',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(4,4,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--edge)}
+.brand{display:flex;align-items:center;gap:.6rem;font-size:1.1rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+.wheel{width:26px;height:26px;border:2px solid var(--saffron);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;animation:wspin 20s linear infinite}
+@keyframes wspin{to{transform:rotate(360deg)}}
+.navr{display:flex;align-items:center;gap:1.25rem}
+.navr a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:500;transition:color .15s}
+.navr a:hover{color:var(--text)}
+.ncta{background:var(--saffron)!important;color:var(--ink)!important;padding:.38rem 1rem;border-radius:20px;font-weight:700!important;font-size:.8rem!important}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;position:relative;overflow:hidden}
+.hglow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 72% 52% at 50% 42%,rgba(255,153,51,.07) 0%,transparent 65%),radial-gradient(ellipse 38% 28% at 78% 22%,rgba(0,150,136,.055) 0%,transparent 58%)}
+.india{position:absolute;top:50%;left:50%;transform:translate(-50%,-56%);width:360px;height:420px;pointer-events:none;opacity:.075}
+.chip{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(255,153,51,.28);border-radius:20px;padding:.28rem .9rem;font-size:.72rem;font-weight:600;color:var(--saffron);margin-bottom:1.75rem}
+.dot{width:6px;height:6px;background:var(--saffron);border-radius:50%;animation:breath 2s ease-in-out infinite}
+@keyframes breath{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.2rem;max-width:600px}
+.s{color:var(--saffron)}.t{color:var(--teal)}
+.hsub{font-size:clamp(.94rem,2vw,1.13rem);color:var(--muted);max-width:450px;margin:0 auto 1.75rem;font-weight:300;line-height:1.8}
+.hsub strong{color:var(--text);font-weight:600}
+.ribbon{overflow:hidden;width:100%;margin:0 0 1.9rem;mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent)}
+.rtrack{display:flex;gap:.8rem;animation:slide 30s linear infinite;width:max-content}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ltag{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:.26rem .78rem;font-size:.79rem;color:var(--muted);white-space:nowrap}
+.wl{max-width:430px;margin:0 auto}
+.wlform{display:flex;gap:.45rem;flex-wrap:wrap;justify-content:center}
+.wlform input[type=email]{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--edge);border-radius:8px;color:var(--text);font-family:inherit;font-size:.92rem;padding:.68rem .95rem;outline:none;transition:border-color .15s}
+.wlform input:focus{border-color:var(--saffron)}
+.wlform input::placeholder{color:var(--muted)}
+.wbtn{background:var(--saffron);color:var(--ink);border:none;border-radius:8px;padding:.68rem 1.3rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s;white-space:nowrap}
+.wbtn:hover{opacity:.87}.wbtn:disabled{opacity:.45;cursor:not-allowed}
+.wok{display:none;margin-top:.9rem;background:rgba(0,150,136,.12);border:1px solid rgba(0,150,136,.28);border-radius:8px;padding:.65rem 1rem;font-size:.85rem;color:#4DB6AC}
+.wok.on{display:block}
+.wshare{margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.wshare a{display:inline-flex;align-items:center;gap:.4rem;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.28);color:#25d366;border-radius:8px;padding:.38rem .9rem;font-size:.8rem;font-weight:600;text-decoration:none;transition:background .15s}
+.wshare a:hover{background:rgba(37,211,102,.2)}
+.vrow{display:flex;align-items:center;justify-content:center;gap:.7rem;margin-top:1.75rem;flex-wrap:wrap}
+.mic{width:46px;height:46px;background:var(--panel);border:1px solid var(--edge);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.15rem;transition:border-color .15s,background .15s;position:relative}
+.mic:hover{border-color:var(--saffron);background:rgba(255,153,51,.09)}
+.mic.on{border-color:#e53935}
+.mic.on::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid #e53935;animation:rip 1.1s ease-out infinite}
+@keyframes rip{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.55)}}
+.vlang{background:var(--panel);border:1px solid var(--edge);border-radius:6px;color:var(--muted);font-family:inherit;font-size:.8rem;padding:.3rem .6rem;outline:none}
+.vst{font-size:.78rem;color:var(--muted)}
+.stats{background:var(--panel);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);padding:2.5rem 1.5rem}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));max-width:800px;margin:0 auto;gap:2rem;text-align:center}
+.sn{font-size:2.2rem;font-weight:800;color:var(--saffron);letter-spacing:-.03em;line-height:1}
+.sl{font-size:.79rem;color:var(--muted);margin-top:.3rem}
+.how{padding:5.5rem 1.5rem;border-bottom:1px solid var(--edge)}
+.ey{text-align:center;font-size:.7rem;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem}
+.sh{text-align:center;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.7rem}
+.ssub{text-align:center;color:var(--muted);max-width:440px;margin:0 auto 3rem;font-size:.9rem;font-weight:300;line-height:1.75}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
+.step{text-align:center;padding:1.5rem}
+.stepn{width:40px;height:40px;border-radius:50%;background:rgba(255,153,51,.12);border:1px solid rgba(255,153,51,.3);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:var(--saffron);margin:0 auto .9rem}
+.step h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.step p{font-size:.84rem;color:var(--muted);line-height:1.65}
+.products{padding:5.5rem 1.5rem}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:1040px;margin:0 auto}
+.pc{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .18s}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),var(--teal));opacity:0;transition:opacity .2s}
+.pc:hover{border-color:var(--soft);transform:translateY(-2px)}
+.pc:hover::before,.pc.hi::before{opacity:1}
+.pc.hi{border-color:var(--saffron)}
+.ptag{position:absolute;top:1.1rem;right:1.1rem;background:rgba(255,153,51,.13);border:1px solid rgba(255,153,51,.3);color:var(--saffron);font-size:.6rem;font-weight:700;padding:.16rem .46rem;border-radius:4px;letter-spacing:.06em}
+.pico{font-size:1.85rem;margin-bottom:.85rem;display:block}
+.pc h3{font-size:1.02rem;font-weight:700;margin-bottom:.36rem}
+.pc p{color:var(--muted);font-size:.85rem;line-height:1.65;margin-bottom:.85rem}
+.plink{font-size:.78rem;font-weight:700;color:var(--saffron);text-decoration:none;display:inline-flex;align-items:center;gap:.28rem;transition:gap .15s}
+.plink:hover{gap:.5rem}
+.pricing{padding:5.5rem 1.5rem;background:var(--panel);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
+.plg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;max-width:840px;margin:0 auto;align-items:start}
+.plan{background:var(--ink);border:1px solid var(--edge);border-radius:14px;padding:1.75rem;position:relative}
+.plan.hi{border-color:var(--saffron)}
+.pbadge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--saffron);color:var(--ink);font-size:.63rem;font-weight:800;padding:.17rem .72rem;border-radius:20px;letter-spacing:.06em;white-space:nowrap}
+.pname{font-size:.73rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.42rem}
+.pprice{font-size:1.85rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.22rem}
+.pprice span{font-size:.8rem;font-weight:400;color:var(--muted)}
+.pdesc{font-size:.8rem;color:var(--muted);margin-bottom:1.15rem;line-height:1.6}
+.pf{list-style:none;margin-bottom:1.35rem}
+.pf li{display:flex;gap:.52rem;align-items:flex-start;font-size:.79rem;color:var(--muted);margin-bottom:.52rem;line-height:1.5}
+.pf li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+.pbtn{display:block;width:100%;text-align:center;border-radius:8px;padding:.65rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s;text-decoration:none;border:none}
+.plan.hi .pbtn{background:var(--saffron);color:var(--ink)}
+.plan:not(.hi) .pbtn{background:transparent;border:1px solid var(--edge);color:var(--text)}
+.pbtn:hover{opacity:.85}
+.domcomp{max-width:680px;margin:3rem auto 0;background:var(--surface);border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.domcomp h3{padding:1.2rem 1.5rem .9rem;font-size:.9rem;font-weight:700;border-bottom:1px solid var(--edge)}
+table{width:100%;border-collapse:collapse}
+th{background:var(--panel);padding:.65rem 1rem;font-size:.72rem;font-weight:700;color:var(--muted);text-align:left;letter-spacing:.04em}
+td{padding:.7rem 1rem;font-size:.82rem;border-top:1px solid var(--edge);color:var(--muted);vertical-align:top}
+td:first-child{color:var(--text);font-weight:600}
+.yes{color:#10b981;font-weight:700}.no{color:#ef4444}
+.win{background:rgba(255,153,51,.05)}
+.rec{color:var(--saffron);font-size:.7rem;font-weight:700;display:inline-block;margin-top:.25rem}
+.invest{padding:5.5rem 1.5rem}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:900px;margin:0 auto;align-items:start}
+.il h2{font-size:clamp(1.75rem,3vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.9rem}
+.il p{color:var(--muted);font-size:.9rem;line-height:1.78;margin-bottom:1.35rem;font-weight:300}
+.tl{list-style:none}
+.tl li{display:flex;gap:.7rem;align-items:flex-start;font-size:.85rem;color:var(--muted);margin-bottom:.82rem;line-height:1.55}
+.tl li b{color:var(--text);font-weight:600}
+.tl li::before{content:'→';color:var(--saffron);flex-shrink:0}
+.iform{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:1.75rem}
+.iform h3{font-size:.93rem;font-weight:700;margin-bottom:1.35rem}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:.32rem}
+.fld input,.fld select,.fld textarea{width:100%;background:var(--ink);border:1px solid var(--edge);border-radius:8px;color:var(--text);font-family:inherit;font-size:.88rem;padding:.6rem .86rem;outline:none;transition:border-color .15s}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--saffron)}
+.fld textarea{resize:vertical;min-height:70px}
+.fld select option{background:var(--panel)}
+.isub{width:100%;background:var(--saffron);color:var(--ink);border:none;border-radius:8px;padding:.72rem;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.isub:hover{opacity:.87}.isub:disabled{opacity:.45;cursor:not-allowed}
+.iok{display:none;margin-top:.7rem;background:rgba(0,150,136,.12);border:1px solid rgba(0,150,136,.28);border-radius:8px;padding:.6rem .9rem;font-size:.79rem;color:#4DB6AC}
+.iok.on{display:block}
+.founder{padding:5rem 1.5rem;border-top:1px solid var(--edge);text-align:center}
+.fav{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--teal));display:flex;align-items:center;justify-content:center;font-size:1.85rem;font-weight:800;color:var(--ink);margin:0 auto 1.15rem}
+.founder h3{font-size:1.2rem;font-weight:800;margin-bottom:.28rem}
+.ftitle{font-size:.8rem;color:var(--saffron);font-weight:600;margin-bottom:.65rem}
+.fbio{color:var(--muted);font-size:.87rem;max-width:490px;margin:0 auto 1.35rem;line-height:1.78;font-weight:300}
+.flinks{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.flinks a{color:var(--text);text-decoration:none;font-size:.79rem;font-weight:600;border:1px solid var(--edge);border-radius:6px;padding:.36rem .85rem;transition:border-color .15s,color .15s}
+.flinks a:hover{border-color:var(--saffron);color:var(--saffron)}
+footer{background:var(--panel);border-top:1px solid var(--edge);padding:1.75rem 1.5rem;text-align:center;color:var(--muted);font-size:.75rem}
+footer a{color:var(--saffron);text-decoration:none}
+footer p+p{margin-top:.4rem}
+@media(max-width:768px){nav{padding:.7rem 1rem}.navr a:not(.ncta){display:none}.ig{grid-template-columns:1fr;gap:2.5rem}.hero{padding:7rem 1rem 4rem}}
+@media(max-width:480px){.plg,.pgrid,.steps{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav><div class="logo">A<span>mavya</span></div><div style="font-size:.8rem;color:#666">amavya.ai · Early access</div></nav>
+<nav>
+  <a href="#" class="brand"><div class="wheel">☸</div>Amavya</a>
+  <div class="navr">
+    <a href="#how">How it works</a>
+    <a href="#products">Products</a>
+    <a href="#pricing">Plans</a>
+    <a href="#invest">Invest</a>
+    <a href="sarkar.html" class="ncta">Try Sarkar</a>
+  </div>
+</nav>
 <section class="hero">
-<span class="moon">🌑</span>
-<h1 id="tagline">Born from darkness.<br><span>Built for everyone.</span></h1>
-<p class="sub" id="subtext">AI-powered platform solving real problems for every Indian — in your language. Every language.</p>
-<div class="lang-select">
-<select onchange="setLang(this.value)">
-<option value="en">English</option>
-<option value="hi">हिन्दी</option>
-<option value="bn">বাংলা</option>
-<option value="te">తెలుగు</option>
-<option value="mr">मराठी</option>
-<option value="ta">தமிழ்</option>
-<option value="gu">ગુજરાતી</option>
-<option value="kn">ಕನ್ನಡ</option>
-<option value="pa">ਪੰਜਾਬੀ</option>
-<option value="or">ଓଡ଼ିଆ</option>
-<option value="ml">മലയാളം</option>
-<option value="as">অসমীয়া</option>
-<option value="ur">اردو</option>
-<option value="mai">मैथिली</option>
-<option value="kok">कोंकणी</option>
-<option value="doi">डोगरी</option>
-<option value="ne">नेपाली</option>
-</select>
-</div>
-<div class="waitlist">
-<input type="email" id="email-input" placeholder="your@email.com"/>
-<button onclick="joinWaitlist()" id="join-btn">Join waitlist</button>
-</div>
-<div id="success-msg">You're on the list. 🌒</div>
-<div class="voice-btn" onclick="startVoice()">🎙️ <span id="voice-label">Tap to speak — we understand your language</span></div>
-<div class="langs">
-<span class="lang-pill">हिन्दी</span><span class="lang-pill">বাংলা</span><span class="lang-pill">తెలుగు</span>
-<span class="lang-pill">मराठी</span><span class="lang-pill">தமிழ்</span><span class="lang-pill">ગુજરાતી</span>
-<span class="lang-pill">ಕನ್ನಡ</span><span class="lang-pill">ਪੰਜਾਬੀ</span><span class="lang-pill">ଓଡ଼ିଆ</span>
-<span class="lang-pill">മലയാളം</span><span class="lang-pill">অসমীয়া</span><span class="lang-pill">اردو</span>
-<span class="lang-pill">मैथिली</span><span class="lang-pill">कोंकणी</span><span class="lang-pill">डोगरी</span>
-<span class="lang-pill">नेपाली</span><span class="lang-pill">English</span>
-</div>
+  <div class="hglow"></div>
+  <svg class="india" viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
+    <g fill="var(--saffron)">
+      <circle cx="190" cy="28" r="2.2"/><circle cx="222" cy="44" r="1.6"/><circle cx="262" cy="62" r="2"/><circle cx="302" cy="88" r="1.6"/><circle cx="322" cy="118" r="2.2"/><circle cx="332" cy="148" r="1.6"/><circle cx="326" cy="178" r="2"/><circle cx="310" cy="204" r="1.6"/><circle cx="292" cy="230" r="2.2"/><circle cx="272" cy="260" r="1.6"/><circle cx="252" cy="290" r="2"/><circle cx="232" cy="320" r="1.6"/><circle cx="216" cy="352" r="2.2"/><circle cx="200" cy="382" r="1.6"/><circle cx="190" cy="408" r="2"/><circle cx="180" cy="382" r="1.6"/><circle cx="164" cy="352" r="2.2"/><circle cx="148" cy="320" r="1.6"/><circle cx="128" cy="290" r="2"/><circle cx="108" cy="260" r="1.6"/><circle cx="88" cy="230" r="2.2"/><circle cx="70" cy="204" r="1.6"/><circle cx="54" cy="178" r="2"/><circle cx="48" cy="148" r="1.6"/><circle cx="58" cy="118" r="2.2"/><circle cx="78" cy="88" r="1.6"/><circle cx="118" cy="62" r="2"/><circle cx="158" cy="44" r="1.6"/><circle cx="190" cy="148" r="1.5"/><circle cx="218" cy="168" r="1"/><circle cx="162" cy="168" r="1"/><circle cx="190" cy="194" r="2"/><circle cx="232" cy="138" r="1"/><circle cx="148" cy="138" r="1"/><circle cx="190" cy="242" r="1.5"/><circle cx="222" cy="262" r="1"/><circle cx="158" cy="262" r="1"/>
+    </g>
+    <circle cx="190" cy="192" r="20" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity=".5"/>
+    <circle cx="190" cy="192" r="4" fill="var(--teal)" opacity=".5"/>
+    <line x1="190" y1="172" x2="190" y2="212" stroke="var(--teal)" stroke-width="1" opacity=".4"/>
+    <line x1="170" y1="192" x2="210" y2="192" stroke="var(--teal)" stroke-width="1" opacity=".4"/>
+  </svg>
+  <div class="chip"><div class="dot"></div>Live demo · amavya.vercel.app · Made in India 🇮🇳</div>
+  <h1>AI for <span class="s">every</span> Indian,<br>in <span class="t">every language.</span></h1>
+  <p class="hsub">Government schemes, health, farming, business — <strong>in your mother tongue.</strong> For the 1.4 billion who deserve better.</p>
+  <div class="ribbon"><div class="rtrack" id="rt"></div></div>
+  <div class="wl">
+    <form id="wf" action="https://formspree.io/f/REPLACE_FORMSPREE_ID" method="POST" onsubmit="doWait(event)" class="wlform">
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <input type="hidden" name="_subject" value="Amavya Waitlist">
+      <button type="submit" class="wbtn" id="wb">Get early access — free</button>
+    </form>
+    <div class="wok" id="wo">🌒 You're in. We'll reach you soon.</div>
+    <div class="wshare">
+      <a href="https://wa.me/?text=Try%20Amavya%20%E2%80%94%20AI%20for%20every%20Indian%20in%20your%20language%3A%20https%3A%2F%2Famavya.vercel.app" target="_blank" rel="noopener">📲 Share on WhatsApp</a>
+    </div>
+  </div>
+  <div class="vrow">
+    <button class="mic" id="micBtn" onclick="toggleVoice()">🎙️</button>
+    <select class="vlang" id="vl">
+      <option value="hi-IN">हिन्दी</option><option value="en-IN" selected>English (IN)</option><option value="bn-IN">বাংলা</option><option value="te-IN">తెలుగు</option><option value="mr-IN">मराठी</option><option value="ta-IN">தமிழ்</option><option value="gu-IN">ગુજરાતી</option><option value="kn-IN">ಕನ್ನಡ</option><option value="pa-IN">ਪੰਜਾਬੀ</option><option value="or-IN">ଓଡ଼ିଆ</option><option value="ml-IN">മലയാളം</option>
+    </select>
+    <span class="vst" id="vs">Tap to speak in your language</span>
+  </div>
 </section>
-<section class="pillars">
-<p class="pillars-label">What Amavya solves</p>
-<div class="grid">
-<div class="card"><span class="card-icon">🏛️</span><div class="card-name">Amavya <span>Sarkar</span></div><p>Find every government scheme you qualify for — in your language, instantly.</p></div>
-<div class="card"><span class="card-icon">🌪️</span><div class="card-name">Amavya <span>Raksha</span></div><p>Cyclone and disaster alerts reaching the last mile — voice, SMS, local language.</p></div>
-<div class="card"><span class="card-icon">🌾</span><div class="card-name">Amavya <span>Krushi</span></div><p>Real-time market prices and weather for farmers and fishermen across India.</p></div>
-<div class="card"><span class="card-icon">🏪</span><div class="card-name">Amavya <span>Vyapar</span></div><p>Data visibility and analytics for MSMEs who run on WhatsApp and gut feel.</p></div>
-<div class="card"><span class="card-icon">🩺</span><div class="card-name">Amavya <span>Swastha</span></div><p>Describe your symptoms in your language. Get nearest relevant care, fast.</p></div>
-<div class="card"><span class="card-icon">🎙️</span><div class="card-name">Amavya <span>Vani</span></div><p>Voice-first AI agent. One tap, speak in any language, get answers instantly.</p></div>
+<div class="stats">
+  <div class="sgrid">
+    <div><div class="sn">1.4B</div><div class="sl">Indians we serve</div></div>
+    <div><div class="sn">22</div><div class="sl">Official languages</div></div>
+    <div><div class="sn">3,000+</div><div class="sl">Govt schemes mapped</div></div>
+    <div><div class="sn">₹0</div><div class="sl">Cost to citizens — always</div></div>
+  </div>
 </div>
+<section class="how" id="how">
+  <div class="ey">How it works</div>
+  <h2 class="sh">Three steps. Your language. Your rights.</h2>
+  <p class="ssub">No paperwork. No English. No middleman. Just answers.</p>
+  <div class="steps">
+    <div class="step"><div class="stepn">1</div><h3>Tell us about yourself</h3><p>State, occupation, income, age — in your language or by voice. Takes 60 seconds.</p></div>
+    <div class="step"><div class="stepn">2</div><h3>AI matches your profile</h3><p>We search 3,000+ central and state govt schemes for everything you qualify for — instantly.</p></div>
+    <div class="step"><div class="stepn">3</div><h3>Get your list + apply links</h3><p>Every scheme, the benefit amount, and the direct official link to apply — in your language.</p></div>
+  </div>
 </section>
-<footer class="founder">
-<p>Founded by <strong>Amit Kumar Sahu</strong> · <a href="https://www.linkedin.com/in/aks1993/" target="_blank">LinkedIn</a> · <a href="https://github.com/nikuamit" target="_blank">GitHub</a></p>
-<p class="copyright">© 2026 Amavya. All rights reserved. Built in India, for India and the world.</p>
+<section class="products" id="products">
+  <div class="ey">Six pillars</div>
+  <h2 class="sh">One mission. Every Indian.</h2>
+  <p class="ssub">Governance to health, farming to business — AI that works for you, right now.</p>
+  <div class="pgrid">
+    <div class="pc hi"><span class="ptag">LIVE NOW</span><span class="pico">🏛️</span><h3>Amavya Sarkar</h3><p>Find every PM scheme, state welfare programme, and subsidy you qualify for — in your language, in 30 seconds. No middleman. No bribe. No English required.</p><a href="sarkar.html" class="plink">Try it free →</a></div>
+    <div class="pc"><span class="pico">🌪️</span><h3>Amavya Raksha</h3><p>Hyperlocal cyclone, flood, and drought alerts reaching the last mile by voice and SMS. Life-saving information for those with the most to lose.</p><a href="#invest" class="plink">Join waitlist →</a></div>
+    <div class="pc"><span class="pico">🌾</span><h3>Amavya Krushi</h3><p>Live mandi prices, MSP alerts, weather, and crop advisory for 100 million farmers — in their dialect, not Delhi's language.</p><a href="#invest" class="plink">Join waitlist →</a></div>
+    <div class="pc"><span class="pico">🏪</span><h3>Amavya Vyapar</h3><p>WhatsApp-native data analyst for 63 million MSMEs. Sales tracking, GST reminders, inventory insights — no data team needed.</p><a href="#invest" class="plink">Join waitlist →</a></div>
+    <div class="pc"><span class="pico">🩺</span><h3>Amavya Swastha</h3><p>Describe symptoms in any language. Get nearest care, AYUSH options, and Ayushman Bharat eligibility — no English, no Google.</p><a href="#invest" class="plink">Join waitlist →</a></div>
+    <div class="pc"><span class="pico">🎙️</span><h3>Amavya Vani</h3><p>One tap, speak, get answers. Voice-first AI for 300 million Indians who cannot type — in any of 22 languages.</p><a href="#invest" class="plink">Join waitlist →</a></div>
+  </div>
+</section>
+<section class="pricing" id="pricing">
+  <div class="ey">Plans</div>
+  <h2 class="sh">Free for citizens. Revenue from builders.</h2>
+  <p class="ssub">Citizens always pay nothing. Governments, NGOs, and developers pay for API and white-label deployments.</p>
+  <div class="plg">
+    <div class="plan"><div class="pname">Nagarik</div><div class="pprice">₹0 <span>/ forever</span></div><div class="pdesc">Every Indian. No login. No catch.</div><ul class="pf"><li>Amavya Sarkar — scheme finder</li><li>All 22 Indian languages</li><li>Voice input and output</li><li>Health and farming info</li><li>SMS fallback for feature phones</li></ul><a href="sarkar.html" class="pbtn">Start free</a></div>
+    <div class="plan hi"><div class="pbadge">COMING NEXT</div><div class="pname">Vyapar</div><div class="pprice">₹499 <span>/ month</span></div><div class="pdesc">MSMEs and small businesses.</div><ul class="pf"><li>Everything in Nagarik</li><li>WhatsApp business dashboard</li><li>Sales, GST, inventory tracking</li><li>Business scheme eligibility</li><li>Priority support in your language</li><li>Export to Excel / PDF</li></ul><a href="#invest" class="pbtn">Join waitlist</a></div>
+    <div class="plan"><div class="pname">API / Sarkar</div><div class="pprice">Custom</div><div class="pdesc">Governments, NGOs, banks, developers.</div><ul class="pf"><li>White-label deployment</li><li>REST API from ₹0.50/query</li><li>Custom language packs</li><li>SLA and uptime guarantee</li><li>Dedicated implementation</li></ul><a href="#invest" class="pbtn">Talk to Amit</a></div>
+  </div>
+  <div class="domcomp">
+    <h3>🌐 Domain: amavya.in vs amavya.ai — what to buy and when</h3>
+    <table>
+      <thead><tr><th>Factor</th><th>amavya.in</th><th>amavya.ai</th></tr></thead>
+      <tbody>
+        <tr class="win"><td>Price<div class="rec">★ Buy now</div></td><td class="yes">₹700–900 / year</td><td class="no">~₹13,400 upfront (2-yr min)</td></tr>
+        <tr><td>Minimum period</td><td class="yes">1 year</td><td class="no">2 years (registry rule)</td></tr>
+        <tr><td>Investor signal</td><td>Strong — "Made in India"</td><td class="yes">Stronger — instant AI brand</td></tr>
+        <tr><td>User trust in India</td><td class="yes">High — familiar TLD</td><td>Good, less familiar</td></tr>
+        <tr><td>SEO</td><td colspan="2" style="text-align:center">Equal — Google treats both as generic</td></tr>
+        <tr class="win"><td>Verdict</td><td class="yes">Buy today (₹700)<div class="rec">✓ Launch on this</div></td><td>Buy after first revenue<div class="rec">→ Upgrade when funded</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="invest" id="invest">
+  <div class="ig">
+    <div class="il">
+      <div class="ey" style="text-align:left;margin-bottom:.55rem">For Investors</div>
+      <h2>The largest untapped AI market on earth.</h2>
+      <p>99% of AI is built for English speakers. India has 1.4 billion people — only 10% speak English. That gap is Amavya's entire market.</p>
+      <p>We are building the operating system for India's next 500 million internet users: voice-first, multilingual, rooted in problems governments are already paying billions to solve.</p>
+      <ul class="tl">
+        <li><b>Live product:</b> amavya.vercel.app — built in one night, fully deployed</li>
+        <li><b>Sarkar MVP live:</b> Claude API scheme finder, 22 languages</li>
+        <li><b>Founder:</b> 9+ years data engineering — Eli Lilly, Infosys/Daimler, Kenko AI</li>
+        <li><b>Market:</b> ₹30L Cr+ in unclaimed welfare annually</li>
+        <li><b>Stack:</b> Python, PySpark, AWS, Claude API — production-grade day one</li>
+        <li><b>Ask:</b> Pre-seed ₹50L–₹1Cr to hire 2 engineers and scale Sarkar</li>
+      </ul>
+    </div>
+    <div class="iform">
+      <h3>Request our pitch deck</h3>
+      <form id="pf" action="https://formspree.io/f/REPLACE_INVEST_ID" method="POST" onsubmit="doPitch(event)">
+        <input type="hidden" name="_subject" value="Amavya Investor Inquiry">
+        <div class="fld"><label>Your name</label><input type="text" name="name" placeholder="Priya Mehta" required></div>
+        <div class="fld"><label>Organisation</label><input type="text" name="org" placeholder="Blume Ventures" required></div>
+        <div class="fld"><label>Email</label><input type="email" name="email" placeholder="priya@fund.in" required></div>
+        <div class="fld"><label>I am a...</label><select name="type"><option>Angel Investor</option><option>VC / Institutional Fund</option><option>Corporate / Strategic</option><option>Startup India / Govt Grant</option><option>Accelerator / Incubator</option></select></div>
+        <div class="fld"><label>Message</label><textarea name="msg" placeholder="What excites you about Amavya..."></textarea></div>
+        <div class="iok" id="io">✓ Received. Amit will reply within 24 hours.</div>
+        <button type="submit" class="isub" id="ib">Send deck request</button>
+      </form>
+    </div>
+  </div>
+</section>
+<section class="founder">
+  <div class="fav">A</div>
+  <h3>Amit Kumar Sahu</h3>
+  <div class="ftitle">Founder, Amavya · Senior Data Engineer · Odisha → Bengaluru</div>
+  <p class="fbio">9+ years building data platforms at Eli Lilly, Infosys (Daimler AG), Kenko AI, and SpanIdea. Studied at Jawahar Navodaya Vidyalaya, Sarang and VSSUT. Building Amavya because I have seen what happens when the government does not speak your language — and neither does AI.</p>
+  <div class="flinks">
+    <a href="https://linkedin.com/in/aks1993/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/nikuamit" target="_blank" rel="noopener">GitHub</a>
+    <a href="sarkar.html">Try Sarkar</a>
+    <a href="#invest">Invest in Amavya</a>
+  </div>
+</section>
+<footer>
+  <p>🇮🇳 Built in India, for India and the world.</p>
+  <p>© 2026 Amavya · Founded by <a href="https://linkedin.com/in/aks1993/">Amit Kumar Sahu</a> · <a href="sarkar.html">Sarkar</a> · <a href="#pricing">Plans</a> · <a href="#invest">Investors</a></p>
 </footer>
 <script>
-const translations={en:{tag:"Born from darkness. Built for everyone.",sub:"AI-powered platform solving real problems for every Indian — in your language.",btn:"Join waitlist",voice:"Tap to speak — we understand your language"},hi:{tag:"अंधेरे से जन्मा। सबके लिए बना।",sub:"हर भारतीय की समस्या का हल — आपकी भाषा में।",btn:"वेटलिस्ट जॉइन करें",voice:"बोलें — हम आपकी भाषा समझते हैं"},bn:{tag:"অন্ধকার থেকে জন্ম। সবার জন্য তৈরি।",sub:"প্রতিটি ভারতীয়ের সমস্যার সমাধান — আপনার ভাষায়।",btn:"ওয়েটলিস্টে যোগ দিন",voice:"কথা বলুন — আমরা আপনার ভাষা বুঝি"},te:{tag:"చీకటి నుండి జన్మించింది. అందరికీ నిర్మించబడింది.",sub:"ప్రతి భారతీయుని సమస్యకు పరిష్కారం — మీ భాషలో.",btn:"వెయిట్‌లిస్ట్‌లో చేరండి",voice:"మాట్లాడండి — మేము మీ భాష అర్థం చేసుకుంటాము"},mr:{tag:"अंधारातून जन्म. సర్వాంసాठी బనవలే.",sub:"प्रत्येक भारतीयाच्या समस्येचे उत्तर — తుమ్చ్యా భాషేత్.",btn:"वेटलिस्टमध्ये సామీల్ వ్హా",voice:"బోలా — ఆమ్హాలా తుమ్చీ భాషా సమజతే"},or:{tag:"ଅନ୍ଧକାରରୁ ଜନ୍ମ। ସମସ୍ତଙ୍କ ପାଇଁ ନିର୍ମିତ।",sub:"ପ୍ରତ୍ୟେକ ଭାରତୀୟଙ୍କ ସମସ୍ୟାର ସମାଧାନ — ଆପଣଙ୍କ ଭାଷାରେ।",btn:"ୱେଟଲିଷ୍ଟରେ ଯୋଗ ଦିଅନ୍ତୁ",voice:"କୁହନ୍ତୁ — ଆମେ ଆପଣଙ୍କ ଭାଷା ବୁଝୁ"},ml:{tag:"ഇരുളിൽ നിന്ന് ജനിച്ചത്. എല്ലാവർക്കും വേണ്ടി.",sub:"ഓരോ ഭാരതീയന്റെയും പ്രശ്നത്തിന് പരിഹാരം — നിങ്ങളുടെ ഭാഷയിൽ.",btn:"വെയ്റ്റ്‌ലിസ്റ്റിൽ ചേരുക",voice:"സംസാരിക്കൂ — ഞങ്ങൾ നിങ്ങളുടെ ഭാഷ മനസ്സിലാക്കുന്നു"}};
-function setLang(l){const t=translations[l]||translations.en;document.getElementById('tagline').innerHTML=t.tag.replace('.','.<br>');document.getElementById('subtext').textContent=t.sub;document.getElementById('join-btn').textContent=t.btn;document.getElementById('voice-label').textContent=t.voice;}
-function joinWaitlist(){const e=document.getElementById('email-input').value.trim();if(!e||!e.includes('@')){document.getElementById('email-input').focus();return;}document.getElementById('success-msg').style.display='block';document.getElementById('email-input').value='';}
-function startVoice(){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){alert('Voice coming soon! Try Chrome on Android.');return;}const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const r=new SR();r.lang='';r.interimResults=false;document.getElementById('voice-label').textContent='🔴 Listening...';r.onresult=function(e){const t=e.results[0][0].transcript;document.getElementById('voice-label').textContent='You said: '+t;};r.onerror=function(){document.getElementById('voice-label').textContent='Try again — tap to speak';};r.start();}
-document.getElementById('email-input').addEventListener('keydown',function(e){if(e.key==='Enter')joinWaitlist();});
+const L=['English','हिन्दी','বাংলা','తెలుగు','मराठी','தமிழ்','ગુજરાતી','ಕನ್ನಡ','ਪੰਜਾਬੀ','ଓଡ଼ିଆ','മലയാളം','অসমীয়া','اردو','मैथिली','कोंकणी','डोगरी','नेपाली','संस्कृतम्','ᱥᱟᱱᱛᱟᱲᱤ','মণিপুরী','سنڌي','کٲشُر'];
+const rt=document.getElementById('rt');
+[...L,...L].forEach(l=>{const d=document.createElement('div');d.className='ltag';d.textContent=l;rt.appendChild(d)});
+async function doWait(e){e.preventDefault();const b=document.getElementById('wb');b.disabled=true;b.textContent='Joining...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){e.target.style.display='none';document.getElementById('wo').classList.add('on')}else{b.disabled=false;b.textContent='Get early access — free'}}catch{b.disabled=false;b.textContent='Get early access — free'}}
+async function doPitch(e){e.preventDefault();const b=document.getElementById('ib');b.disabled=true;b.textContent='Sending...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){document.getElementById('io').classList.add('on');b.textContent='Sent ✓'}else{b.disabled=false;b.textContent='Send deck request'}}catch{b.disabled=false;b.textContent='Send deck request'}}
+let rec=null,alive=false;
+function toggleVoice(){const A=window.SpeechRecognition||window.webkitSpeechRecognition;if(!A){document.getElementById('vs').textContent='Use Chrome for voice';return}if(alive){rec.stop();return}rec=new A();rec.lang=document.getElementById('vl').value;rec.interimResults=false;rec.onstart=()=>{alive=true;document.getElementById('micBtn').classList.add('on');document.getElementById('vs').textContent='Listening...'};rec.onresult=ev=>{const t=ev.results[0][0].transcript;document.getElementById('vs').textContent='"'+t+'"';setTimeout(()=>{window.location.href='sarkar.html?q='+encodeURIComponent(t)},800)};rec.onerror=ev=>{document.getElementById('vs').textContent='Error: '+ev.error};rec.onend=()=>{alive=false;document.getElementById('micBtn').classList.remove('on')};rec.start()}
 </script>
 </body>
 </html>

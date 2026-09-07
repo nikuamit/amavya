@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amavya Sarkar — Find Your Government Schemes</title>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#04040a;--surface:#0d0d16;--panel:#111120;--edge:#1c1c2e;--saffron:#FF9933;--teal:#009688;--text:#eeeef8;--muted:#5c5c78;--ok:#10b981;--err:#ef4444}
+body{background:var(--ink);color:var(--text);font-family:'Mukta',system-ui,sans-serif;min-height:100vh}
+header{padding:1rem 2rem;border-bottom:1px solid var(--edge);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header a{color:var(--muted);text-decoration:none;font-size:.83rem;transition:color .15s}
+header a:hover{color:var(--text)}
+.hl{font-size:1.02rem;font-weight:800;color:var(--text)}.hl span{color:var(--saffron)}
+.hb{background:rgba(255,153,51,.12);border:1px solid rgba(255,153,51,.28);color:var(--saffron);border-radius:4px;padding:.16rem .52rem;font-size:.62rem;font-weight:700;letter-spacing:.06em}
+main{max-width:740px;margin:0 auto;padding:2.5rem 1.5rem}
+.hero{text-align:center;margin-bottom:2.25rem}
+.hero h1{font-size:clamp(1.65rem,4vw,2.3rem);font-weight:800;line-height:1.15;margin-bottom:.65rem}
+.hero h1 em{font-style:normal;color:var(--saffron)}
+.hero p{color:var(--muted);font-size:.92rem;max-width:420px;margin:0 auto;line-height:1.72;font-weight:300}
+.lstrip{display:flex;flex-wrap:wrap;gap:.38rem;justify-content:center;margin-bottom:1.9rem}
+.lc{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:.25rem .7rem;font-size:.77rem;cursor:pointer;transition:border-color .15s,background .15s;color:var(--muted)}
+.lc:hover,.lc.on{border-color:var(--saffron);background:rgba(255,153,51,.09);color:var(--text)}
+.fcard{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:1.65rem;margin-bottom:1.2rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fg{margin-bottom:1rem}
+label{display:block;font-size:.73rem;color:var(--muted);font-weight:600;margin-bottom:.3rem}
+input,select,textarea{width:100%;background:var(--ink);border:1px solid var(--edge);border-radius:8px;color:var(--text);font-family:inherit;font-size:.88rem;padding:.6rem .85rem;outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--saffron)}
+select option{background:var(--panel)}
+textarea{resize:vertical;min-height:78px}
+.cbg{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
+.cbi{display:flex;align-items:center;gap:.42rem;font-size:.82rem;cursor:pointer;color:var(--muted);transition:color .15s}
+.cbi input[type=checkbox]{width:auto;accent-color:var(--saffron)}
+.cbi:hover{color:var(--text)}
+.sbtn{width:100%;background:var(--saffron);color:var(--ink);border:none;border-radius:8px;padding:.8rem;font-size:.96rem;font-weight:700;cursor:pointer;transition:opacity .15s;font-family:inherit}
+.sbtn:hover{opacity:.87}.sbtn:disabled{opacity:.45;cursor:not-allowed}
+.em{display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:.6rem .85rem;font-size:.82rem;color:var(--err);margin-bottom:.85rem}
+.em.on{display:block}
+.ld{display:none;text-align:center;padding:2.5rem;color:var(--muted)}.ld.on{display:block}
+.sp{width:30px;height:30px;border:3px solid var(--edge);border-top-color:var(--saffron);border-radius:50%;margin:0 auto .85rem;animation:sp .75s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.res{display:none}.res.on{display:block}
+.rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem}
+.rh h2{font-size:.93rem;font-weight:700}.rc{font-size:.76rem;color:var(--muted)}
+.rshare{margin-bottom:1.2rem}
+.rshare a{display:inline-flex;align-items:center;gap:.38rem;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#25d366;border-radius:8px;padding:.35rem .8rem;font-size:.76rem;font-weight:600;text-decoration:none;transition:background .15s}
+.rshare a:hover{background:rgba(37,211,102,.2)}
+.sc{background:var(--panel);border:1px solid var(--edge);border-left:3px solid var(--saffron);border-radius:10px;padding:1.15rem;margin-bottom:.85rem}
+.sc .mn{font-size:.7rem;color:var(--saffron);font-weight:700;margin-bottom:.32rem}
+.sc h3{font-size:.96rem;font-weight:700;margin-bottom:.38rem}
+.sc .bn{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.18);border-radius:6px;padding:.42rem .68rem;font-size:.76rem;color:var(--ok);margin-bottom:.62rem}
+.sc p{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:.62rem}
+.al{display:inline-block;background:rgba(255,153,51,.1);border:1px solid rgba(255,153,51,.26);color:var(--saffron);border-radius:6px;padding:.33rem .75rem;font-size:.74rem;font-weight:700;text-decoration:none;transition:background .15s}
+.al:hover{background:rgba(255,153,51,.2)}
+.fb{display:flex;align-items:center;gap:.75rem;margin-top:1.5rem;padding:1rem 1.2rem;background:var(--panel);border:1px solid var(--edge);border-radius:10px;flex-wrap:wrap}
+.fb p{font-size:.82rem;color:var(--muted);flex:1}
+.fb button{background:var(--panel);border:1px solid var(--edge);border-radius:6px;color:var(--muted);font-family:inherit;font-size:.8rem;padding:.35rem .75rem;cursor:pointer;transition:border-color .15s,color .15s}
+.fb button:hover{border-color:var(--saffron);color:var(--saffron)}
+.note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:.9rem;line-height:1.6}
+footer{text-align:center;padding:1.75rem;color:var(--muted);font-size:.74rem;border-top:1px solid var(--edge);margin-top:4rem}
+footer a{color:var(--saffron);text-decoration:none}
+@media(max-width:540px){.row2{grid-template-columns:1fr}.cbg{grid-template-columns:1fr}main{padding:1.75rem 1rem}}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html">← Amavya</a>
+  <div class="hl">Amavya <span>Sarkar</span></div>
+  <span class="hb">LIVE MVP</span>
+  <div style="flex:1"></div>
+  <a href="https://wa.me/?text=Find%20govt%20schemes%20you%20qualify%20for%20%E2%80%94%20Amavya%20Sarkar%3A%20https%3A%2F%2Famavya.vercel.app%2Fsarkar.html" target="_blank" rel="noopener" style="font-size:.78rem;color:#25d366;border:1px solid rgba(37,211,102,.25);border-radius:6px;padding:.3rem .75rem;text-decoration:none">📲 Share</a>
+</header>
+<main>
+  <div class="hero">
+    <h1>Find schemes you <em>actually qualify for</em></h1>
+    <p>AI searches 3,000+ central and state govt schemes for you — in your language, in seconds. Free. Always.</p>
+  </div>
+  <div class="lstrip" id="ls">
+    <div class="lc on" data-l="en" data-n="English">English</div>
+    <div class="lc" data-l="hi" data-n="Hindi">हिन्दी</div>
+    <div class="lc" data-l="bn" data-n="Bengali">বাংলা</div>
+    <div class="lc" data-l="te" data-n="Telugu">తెలుగు</div>
+    <div class="lc" data-l="mr" data-n="Marathi">मराठी</div>
+    <div class="lc" data-l="ta" data-n="Tamil">தமிழ்</div>
+    <div class="lc" data-l="gu" data-n="Gujarati">ગુજરાતી</div>
+    <div class="lc" data-l="kn" data-n="Kannada">ಕನ್ನಡ</div>
+    <div class="lc" data-l="pa" data-n="Punjabi">ਪੰਜਾਬੀ</div>
+    <div class="lc" data-l="or" data-n="Odia">ଓଡ଼ିଆ</div>
+    <div class="lc" data-l="ml" data-n="Malayalam">മലയാളം</div>
+    <div class="lc" data-l="as" data-n="Assamese">অসমীয়া</div>
+    <div class="lc" data-l="ur" data-n="Urdu">اردو</div>
+    <div class="lc" data-l="mai" data-n="Maithili">मैथिली</div>
+    <div class="lc" data-l="ne" data-n="Nepali">नेपाली</div>
+    <div class="lc" data-l="kok" data-n="Konkani">कोंकणी</div>
+    <div class="lc" data-l="doi" data-n="Dogri">डोगरी</div>
+    <div class="lc" data-l="sa" data-n="Sanskrit">संस्कृतम्</div>
+    <div class="lc" data-l="mni" data-n="Manipuri">মণিপুরী</div>
+    <div class="lc" data-l="sat" data-n="Santali">ᱥᱟᱱᱛᱟᱲᱤ</div>
+    <div class="lc" data-l="sd" data-n="Sindhi">سنڌي</div>
+    <div class="lc" data-l="ks" data-n="Kashmiri">کٲشُر</div>
+  </div>
+  <div class="fcard">
+    <div class="row2">
+      <div class="fg"><label>State / UT</label>
+        <select id="state"><option value="">Select your state</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option><option>Delhi</option><option>Jammu &amp; Kashmir</option><option>Ladakh</option><option>Puducherry</option><option>Chandigarh</option><option>Andaman &amp; Nicobar</option><option>Lakshadweep</option></select>
+      </div>
+      <div class="fg"><label>Occupation</label>
+        <select id="occ"><option value="">Select occupation</option><option>Farmer / Kisaan</option><option>Agricultural Labourer</option><option>Daily Wage Worker</option><option>MSME / Small Business</option><option>Student</option><option>Unemployed / Job Seeker</option><option>Fisherman</option><option>Artisan / Craftsperson</option><option>Self Employed</option><option>Domestic Worker</option><option>Construction Worker</option><option>Street Vendor</option><option>Homemaker</option><option>Government Employee</option><option>Private Employee</option><option>Other</option></select>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="fg"><label>Annual Family Income</label>
+        <select id="inc"><option value="">Select income</option><option value="below50k">Below ₹50,000</option><option value="50k-1L">₹50,000 – ₹1,00,000</option><option value="1L-2.5L">₹1,00,000 – ₹2,50,000</option><option value="2.5L-5L">₹2,50,000 – ₹5,00,000</option><option value="5L-8L">₹5,00,000 – ₹8,00,000</option><option value="above8L">Above ₹8,00,000</option></select>
+      </div>
+      <div class="fg"><label>Age Group</label>
+        <select id="age"><option value="">Select age</option><option>Under 18</option><option>18–25</option><option>26–35</option><option>36–45</option><option>46–59</option><option>60 and above</option></select>
+      </div>
+    </div>
+    <div class="fg"><label>I belong to (select all that apply)</label>
+      <div class="cbg">
+        <label class="cbi"><input type="checkbox" value="SC"> SC (Scheduled Caste)</label>
+        <label class="cbi"><input type="checkbox" value="ST"> ST (Scheduled Tribe)</label>
+        <label class="cbi"><input type="checkbox" value="OBC"> OBC</label>
+        <label class="cbi"><input type="checkbox" value="General"> General</label>
+        <label class="cbi"><input type="checkbox" value="Woman"> Woman / Girl Child</label>
+        <label class="cbi"><input type="checkbox" value="PwD"> Person with Disability</label>
+        <label class="cbi"><input type="checkbox" value="Minority"> Minority</label>
+        <label class="cbi"><input type="checkbox" value="BPL"> BPL Card Holder</label>
+        <label class="cbi"><input type="checkbox" value="Senior"> Senior Citizen 60+</label>
+        <label class="cbi"><input type="checkbox" value="Veteran"> Ex-Serviceman</label>
+      </div>
+    </div>
+    <div class="fg"><label>What help are you looking for? (any language)</label>
+      <textarea id="free" placeholder="e.g. I want to start a small shop, my daughter needs a scholarship, मुझे घर चाहिए..."></textarea>
+    </div>
+    <div class="em" id="er">Please fill in State, Occupation, Income, and Age.</div>
+    <button class="sbtn" id="sb" onclick="find()">Find My Schemes →</button>
+  </div>
+  <div class="ld" id="ld"><div class="sp"></div><p id="lt">Searching central and state schemes...</p></div>
+  <div class="res" id="res">
+    <div class="rh"><h2 id="rtitle">Schemes you qualify for</h2><span class="rc" id="rc"></span></div>
+    <div class="rshare"><a id="walink" href="#" target="_blank" rel="noopener">📲 Share results on WhatsApp</a></div>
+    <div id="rl"></div>
+    <div class="fb">
+      <p>Was this helpful?</p>
+      <button onclick="alert('Thanks! 👍 Amit will keep improving Sarkar.')">👍 Yes</button>
+      <button onclick="alert('Thanks for the honest feedback! 👎 Amit will fix it.')">👎 Needs work</button>
+      <button onclick="alert('Noted! 🔍 Tell Amit which scheme is missing on WhatsApp.')">🔍 Missing scheme</button>
+    </div>
+    <p class="note">⚠️ AI-generated guidance only. Verify eligibility on official govt portals before applying. Amavya is not affiliated with any government body.</p>
+  </div>
+</main>
+<footer>Amavya Sarkar · Built by <a href="https://linkedin.com/in/aks1993/">Amit Kumar Sahu</a> · <a href="index.html">amavya.vercel.app</a></footer>
+<script>
+let lang='en',langName='English';
+document.querySelectorAll('.lc').forEach(c=>{c.addEventListener('click',()=>{document.querySelectorAll('.lc').forEach(x=>x.classList.remove('on'));c.classList.add('on');lang=c.dataset.l;langName=c.dataset.n})});
+function cats(){return Array.from(document.querySelectorAll('.cbg input:checked')).map(i=>i.value)}
+const msgs=['Searching central and state schemes...','Checking PM schemes and ministry portals...','Matching your profile to eligibility criteria...','Finding state-specific schemes...','Preparing results...'];
+let mi=0,mt;
+async function find(){
+  const state=document.getElementById('state').value,occ=document.getElementById('occ').value,inc=document.getElementById('inc').value,age=document.getElementById('age').value,free=document.getElementById('free').value,er=document.getElementById('er');
+  er.classList.remove('on');
+  if(!state||!occ||!inc||!age){er.classList.add('on');return}
+  const btn=document.getElementById('sb');btn.disabled=true;
+  document.getElementById('ld').classList.add('on');document.getElementById('res').classList.remove('on');
+  mt=setInterval(()=>{mi=(mi+1)%msgs.length;document.getElementById('lt').textContent=msgs[mi]},1800);
+  const prompt=`You are Amavya Sarkar, an AI helping Indian citizens find government welfare schemes.\n\nUser: State=${state}, Occupation=${occ}, Income=${inc}, Age=${age}, Categories=${cats().join(',')}, Request="${free||'General schemes'}"\n\nFind 6-8 real active Indian govt schemes (central + state for ${state}) this person qualifies for. Include PM-KISAN, PMAY, Mudra etc. where relevant AND lesser-known ones.\n\nReturn ONLY valid JSON:\n{"schemes":[{"name":"name","ministry":"ministry","benefit":"key benefit one line","description":"2-3 sentences: what it is, eligibility, how to apply","apply_url":"official URL"}]}\n\n${lang!=='en'?'TRANSLATE name, benefit, description to '+langName+'. Keep apply_url in English.':'English only.'}`;
+  try{
+    let r;
+    try{r=await fetch('/api/sarkar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1200,messages:[{role:'user',content:prompt}]})})}
+    catch{clearInterval(mt);document.getElementById('ld').classList.remove('on');btn.disabled=false;demoMode();return}
+    clearInterval(mt);
+    if(!r.ok)throw new Error('API '+r.status);
+    const data=await r.json();
+    const text=data.content?.find(b=>b.type==='text')?.text||'';
+    render(JSON.parse(text.replace(/```json|```/g,'').trim()).schemes||[]);
+  }catch(e){clearInterval(mt);demoMode()}
+  finally{btn.disabled=false;document.getElementById('ld').classList.remove('on')}
+}
+function demoMode(){
+  render([
+    {name:'PM-KISAN',ministry:'Ministry of Agriculture',benefit:'₹6,000/year directly to your bank account in 3 installments',description:'Income support for small and marginal farmers owning up to 2 hectares. ₹2,000 every 4 months. Apply at pmkisan.gov.in with Aadhaar + bank account.',apply_url:'https://pmkisan.gov.in'},
+    {name:'Pradhan Mantri Awas Yojana (PMAY)',ministry:'Ministry of Housing',benefit:'Up to ₹2.67 lakh interest subsidy on home loan',description:'Credit-linked subsidy for buying or building a house. EWS (below ₹3L income) gets 6.5% subsidy. Apply at pmaymis.gov.in or any bank.',apply_url:'https://pmaymis.gov.in'},
+    {name:'PM Mudra Yojana',ministry:'Ministry of Finance',benefit:'Loans up to ₹10 lakh for small businesses — no collateral',description:'Shishu (₹50K), Kishor (₹5L), Tarun (₹10L) loans for non-farm businesses. Apply at any public sector bank or mudra.org.in.',apply_url:'https://www.mudra.org.in'},
+    {name:'Ayushman Bharat – PMJAY',ministry:'Ministry of Health',benefit:'₹5 lakh health insurance per family per year',description:'Free hospitalization for BPL and low-income families. Check eligibility at pmjay.gov.in and get your e-card for cashless treatment.',apply_url:'https://pmjay.gov.in'},
+    {name:'PM Jeevan Jyoti Bima Yojana',ministry:'Ministry of Finance',benefit:'₹2 lakh life cover for just ₹436/year',description:'Term life insurance for ages 18–50. Premium auto-debited from your bank account annually. Enroll at your bank.',apply_url:'https://jansuraksha.gov.in'},
+    {name:'National Social Assistance Programme',ministry:'Ministry of Rural Development',benefit:'₹200–500/month pension for elderly, widows, disabled',description:'Monthly pension for BPL households. Indira Gandhi Old Age Pension (60+), Widow Pension, Disability Pension. Apply at your Gram Panchayat.',apply_url:'https://nsap.nic.in'}
+  ]);
+}
+function render(schemes){
+  const rl=document.getElementById('rl'),res=document.getElementById('res');
+  document.getElementById('rc').textContent=schemes.length+' schemes found';
+  const msg='I found '+schemes.length+' govt schemes I qualify for using Amavya Sarkar! Try it free: https://amavya.vercel.app/sarkar.html';
+  document.getElementById('walink').href='https://wa.me/?text='+encodeURIComponent(msg);
+  rl.innerHTML=schemes.map(s=>`<div class="sc"><div class="mn">${s.ministry||''}</div><h3>${s.name}</h3><div class="bn">💰 ${s.benefit}</div><p>${s.description}</p>${s.apply_url?'<a class="al" href="'+s.apply_url+'" target="_blank" rel="noopener">Apply / Learn More →</a>':''}</div>`).join('');
+  res.classList.add('on');res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+const qp=new URLSearchParams(location.search).get('q');
+if(qp)document.getElementById('free').value=qp;
+</script>
+</body>
+</html>
