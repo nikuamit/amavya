@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amavya — Born from darkness. Built for everyone.</title>
+<meta name="author" content="Amit Kumar Sahu">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#fafafa;font-family:system-ui,sans-serif;min-height:100vh}
+nav{padding:1.25rem 2rem;display:flex;justify-content:space-between;border-bottom:0.5px solid #222}
+.logo{font-size:1.1rem;font-weight:600;letter-spacing:.05em}.logo span{color:#6c47d9}
+.hero{max-width:720px;margin:0 auto;padding:6rem 2rem;text-align:center}
+.moon{font-size:3rem;margin-bottom:1.5rem;display:block}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:1.25rem}
+h1 span{color:#6c47d9}
+.sub{font-size:1.05rem;color:#aaa;line-height:1.7;max-width:560px;margin:0 auto 2.5rem}
+.waitlist{display:flex;gap:.75rem;max-width:420px;margin:0 auto 1rem;flex-wrap:wrap;justify-content:center}
+.waitlist input{flex:1;min-width:220px;padding:.75rem 1rem;border-radius:8px;border:0.5px solid #333;background:#111;color:#fafafa;font-size:.95rem;outline:none}
+.waitlist input:focus{border-color:#6c47d9}
+.waitlist button{padding:.75rem 1.5rem;border-radius:8px;background:#6c47d9;color:#fff;font-size:.95rem;font-weight:500;border:none;cursor:pointer}
+.lang-select{margin:1rem auto;display:flex;justify-content:center}
+.lang-select select{padding:.5rem 1rem;border-radius:8px;background:#111;color:#fafafa;border:0.5px solid #333;font-size:.9rem}
+.langs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:2rem auto 0;max-width:640px}
+.lang-pill{padding:.3rem .75rem;border-radius:999px;border:0.5px solid #333;font-size:.78rem;color:#888;background:#111}
+.voice-btn{margin:1.5rem auto 0;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:999px;background:#1a1a1a;border:0.5px solid #6c47d9;color:#6c47d9;font-size:.9rem;cursor:pointer;width:fit-content}
+.pillars{max-width:900px;margin:4rem auto;padding:0 2rem}
+.pillars-label{text-align:center;font-size:.78rem;letter-spacing:.12em;color:#555;margin-bottom:2rem;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.card{background:#111;border:0.5px solid #222;border-radius:12px;padding:1.5rem}
+.card-icon{font-size:1.5rem;margin-bottom:.75rem;display:block}
+.card-name{font-size:.9rem;font-weight:600;margin-bottom:.4rem}
+.card-name span{color:#6c47d9}
+.card p{font-size:.82rem;color:#666;line-height:1.6}
+.founder{text-align:center;padding:4rem 2rem 6rem;border-top:0.5px solid #111}
+.founder p{font-size:.82rem;color:#444;line-height:1.8}
+.founder a{color:#555;text-decoration:none}
+.copyright{font-size:.72rem;color:#333;margin-top:1rem}
+#success-msg{display:none;color:#7cfc00;font-size:.85rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<nav><div class="logo">A<span>mavya</span></div><div style="font-size:.8rem;color:#666">amavya.ai · Early access</div></nav>
+<section class="hero">
+<span class="moon">🌑</span>
+<h1 id="tagline">Born from darkness.<br><span>Built for everyone.</span></h1>
+<p class="sub" id="subtext">AI-powered platform solving real problems for every Indian — in your language. Every language.</p>
+<div class="lang-select">
+<select onchange="setLang(this.value)">
+<option value="en">English</option>
+<option value="hi">हिन्दी</option>
+<option value="bn">বাংলা</option>
+<option value="te">తెలుగు</option>
+<option value="mr">मराठी</option>
+<option value="ta">தமிழ்</option>
+<option value="gu">ગુજરાતી</option>
+<option value="kn">ಕನ್ನಡ</option>
+<option value="pa">ਪੰਜਾਬੀ</option>
+<option value="or">ଓଡ଼ିଆ</option>
+<option value="ml">മലയാളം</option>
+<option value="as">অসমীয়া</option>
+<option value="ur">اردو</option>
+<option value="mai">मैथिली</option>
+<option value="kok">कोंकणी</option>
+<option value="doi">डोगरी</option>
+<option value="ne">नेपाली</option>
+</select>
+</div>
+<div class="waitlist">
+<input type="email" id="email-input" placeholder="your@email.com"/>
+<button onclick="joinWaitlist()" id="join-btn">Join waitlist</button>
+</div>
+<div id="success-msg">You're on the list. 🌒</div>
+<div class="voice-btn" onclick="startVoice()">🎙️ <span id="voice-label">Tap to speak — we understand your language</span></div>
+<div class="langs">
+<span class="lang-pill">हिन्दी</span><span class="lang-pill">বাংলা</span><span class="lang-pill">తెలుగు</span>
+<span class="lang-pill">मराठी</span><span class="lang-pill">தமிழ்</span><span class="lang-pill">ગુજરાતી</span>
+<span class="lang-pill">ಕನ್ನಡ</span><span class="lang-pill">ਪੰਜਾਬੀ</span><span class="lang-pill">ଓଡ଼ିଆ</span>
+<span class="lang-pill">മലയാളം</span><span class="lang-pill">অসমীয়া</span><span class="lang-pill">اردو</span>
+<span class="lang-pill">मैथिली</span><span class="lang-pill">कोंकणी</span><span class="lang-pill">डोगरी</span>
+<span class="lang-pill">नेपाली</span><span class="lang-pill">English</span>
+</div>
+</section>
+<section class="pillars">
+<p class="pillars-label">What Amavya solves</p>
+<div class="grid">
+<div class="card"><span class="card-icon">🏛️</span><div class="card-name">Amavya <span>Sarkar</span></div><p>Find every government scheme you qualify for — in your language, instantly.</p></div>
+<div class="card"><span class="card-icon">🌪️</span><div class="card-name">Amavya <span>Raksha</span></div><p>Cyclone and disaster alerts reaching the last mile — voice, SMS, local language.</p></div>
+<div class="card"><span class="card-icon">🌾</span><div class="card-name">Amavya <span>Krushi</span></div><p>Real-time market prices and weather for farmers and fishermen across India.</p></div>
+<div class="card"><span class="card-icon">🏪</span><div class="card-name">Amavya <span>Vyapar</span></div><p>Data visibility and analytics for MSMEs who run on WhatsApp and gut feel.</p></div>
+<div class="card"><span class="card-icon">🩺</span><div class="card-name">Amavya <span>Swastha</span></div><p>Describe your symptoms in your language. Get nearest relevant care, fast.</p></div>
+<div class="card"><span class="card-icon">🎙️</span><div class="card-name">Amavya <span>Vani</span></div><p>Voice-first AI agent. One tap, speak in any language, get answers instantly.</p></div>
+</div>
+</section>
+<footer class="founder">
+<p>Founded by <strong>Amit Kumar Sahu</strong> · <a href="https://www.linkedin.com/in/aks1993/" target="_blank">LinkedIn</a> · <a href="https://github.com/nikuamit" target="_blank">GitHub</a></p>
+<p class="copyright">© 2026 Amavya. All rights reserved. Built in India, for India and the world.</p>
+</footer>
+<script>
+const translations={en:{tag:"Born from darkness. Built for everyone.",sub:"AI-powered platform solving real problems for every Indian — in your language.",btn:"Join waitlist",voice:"Tap to speak — we understand your language"},hi:{tag:"अंधेरे से जन्मा। सबके लिए बना।",sub:"हर भारतीय की समस्या का हल — आपकी भाषा में।",btn:"वेटलिस्ट जॉइन करें",voice:"बोलें — हम आपकी भाषा समझते हैं"},bn:{tag:"অন্ধকার থেকে জন্ম। সবার জন্য তৈরি।",sub:"প্রতিটি ভারতীয়ের সমস্যার সমাধান — আপনার ভাষায়।",btn:"ওয়েটলিস্টে যোগ দিন",voice:"কথা বলুন — আমরা আপনার ভাষা বুঝি"},te:{tag:"చీకటి నుండి జన్మించింది. అందరికీ నిర్మించబడింది.",sub:"ప్రతి భారతీయుని సమస్యకు పరిష్కారం — మీ భాషలో.",btn:"వెయిట్‌లిస్ట్‌లో చేరండి",voice:"మాట్లాడండి — మేము మీ భాష అర్థం చేసుకుంటాము"},mr:{tag:"अंधारातून जन्म. సర్వాంసాठी బనవలే.",sub:"प्रत्येक भारतीयाच्या समस्येचे उत्तर — తుమ్చ్యా భాషేత్.",btn:"वेटलिस्टमध्ये సామీల్ వ్హా",voice:"బోలా — ఆమ్హాలా తుమ్చీ భాషా సమజతే"},or:{tag:"ଅନ୍ଧକାରରୁ ଜନ୍ମ। ସମସ୍ତଙ୍କ ପାଇଁ ନିର୍ମିତ।",sub:"ପ୍ରତ୍ୟେକ ଭାରତୀୟଙ୍କ ସମସ୍ୟାର ସମାଧାନ — ଆପଣଙ୍କ ଭାଷାରେ।",btn:"ୱେଟଲିଷ୍ଟରେ ଯୋଗ ଦିଅନ୍ତୁ",voice:"କୁହନ୍ତୁ — ଆମେ ଆପଣଙ୍କ ଭାଷା ବୁଝୁ"},ml:{tag:"ഇരുളിൽ നിന്ന് ജനിച്ചത്. എല്ലാവർക്കും വേണ്ടി.",sub:"ഓരോ ഭാരതീയന്റെയും പ്രശ്നത്തിന് പരിഹാരം — നിങ്ങളുടെ ഭാഷയിൽ.",btn:"വെയ്റ്റ്‌ലിസ്റ്റിൽ ചേരുക",voice:"സംസാരിക്കൂ — ഞങ്ങൾ നിങ്ങളുടെ ഭാഷ മനസ്സിലാക്കുന്നു"}};
+function setLang(l){const t=translations[l]||translations.en;document.getElementById('tagline').innerHTML=t.tag.replace('.','.<br>');document.getElementById('subtext').textContent=t.sub;document.getElementById('join-btn').textContent=t.btn;document.getElementById('voice-label').textContent=t.voice;}
+function joinWaitlist(){const e=document.getElementById('email-input').value.trim();if(!e||!e.includes('@')){document.getElementById('email-input').focus();return;}document.getElementById('success-msg').style.display='block';document.getElementById('email-input').value='';}
+function startVoice(){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){alert('Voice coming soon! Try Chrome on Android.');return;}const SR=window.SpeechRecognition||window.webkitSpeechRecognition;const r=new SR();r.lang='';r.interimResults=false;document.getElementById('voice-label').textContent='🔴 Listening...';r.onresult=function(e){const t=e.results[0][0].transcript;document.getElementById('voice-label').textContent='You said: '+t;};r.onerror=function(){document.getElementById('voice-label').textContent='Try again — tap to speak';};r.start();}
+document.getElementById('email-input').addEventListener('keydown',function(e){if(e.key==='Enter')joinWaitlist();});
+</script>
+</body>
+</html>
