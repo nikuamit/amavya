@@ -54,6 +54,9 @@ h1{font-size:clamp(2.7rem,6.5vw,4.6rem);font-weight:800;line-height:1.05;letter-
 @keyframes rip{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.55)}}
 .vlang{background:var(--panel);border:1px solid var(--edge);border-radius:6px;color:var(--muted);font-family:inherit;font-size:.8rem;padding:.3rem .6rem;outline:none}
 .vst{font-size:.78rem;color:var(--muted)}
+.vlbl{font-size:.78rem;color:var(--saffron);font-weight:600}
+.livedot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e53935;margin-right:.35rem;vertical-align:middle;animation:blink 1s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 .stats{background:var(--panel);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);padding:2.5rem 1.5rem}
 .sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));max-width:800px;margin:0 auto;gap:2rem;text-align:center}
 .sn{font-size:2.2rem;font-weight:800;color:var(--saffron);letter-spacing:-.03em;line-height:1}
@@ -199,9 +202,10 @@ footer p+p{margin-top:.4rem}
   </div>
   <div class="vrow">
     <button class="mic" id="micBtn" onclick="tv()">&#x1F399;&#xFE0F;</button>
-    <select class="vlang" id="vl">
+    <span class="vlbl" id="vlbl">English</span>
+    <select class="vlang" id="vl" onchange="uvl()">
+      <option value="en-IN" selected>English</option>
       <option value="hi-IN">&#x939;&#x93F;&#x928;&#x94D;&#x926;&#x940;</option>
-      <option value="en-IN" selected>English (IN)</option>
       <option value="bn-IN">&#x9AC;&#x9BE;&#x982;&#x9B2;&#x9BE;</option>
       <option value="te-IN">&#x0C24;&#x0C46;&#x0C32;&#x0C41;&#x0C17;&#x0C41;</option>
       <option value="mr-IN">&#x092E;&#x0930;&#x093E;&#x0920;&#x0940;</option>
@@ -211,6 +215,17 @@ footer p+p{margin-top:.4rem}
       <option value="pa-IN">&#x0A2A;&#x0A70;&#x0A1C;&#x0A3E;&#x0A2C;&#x0A40;</option>
       <option value="or-IN">&#x0B13;&#x0B5C;&#x0B3C;&#x0B3F;&#x0B06;</option>
       <option value="ml-IN">&#x0D2E;&#x0D32;&#x0D2F;&#x0D3E;&#x0D33;&#x0D02;</option>
+      <option value="as-IN">&#x985;&#x9B8;&#x9AE;&#x9C0;&#x9AF;&#x9BC;&#x9BE;</option>
+      <option value="ur-IN">&#x627;&#x631;&#x62F;&#x648;</option>
+      <option value="mai">&#x92E;&#x948;&#x925;&#x93F;&#x932;&#x940;</option>
+      <option value="kok-IN">&#x915;&#x94B;&#x902;&#x915;&#x923;&#x940;</option>
+      <option value="doi">&#x921;&#x94B;&#x917;&#x930;&#x940;</option>
+      <option value="ne-IN">&#x928;&#x947;&#x92A;&#x93E;&#x932;&#x940;</option>
+      <option value="sa-IN">&#x938;&#x902;&#x938;&#x94D;&#x915;&#x943;&#x924;&#x92E;&#x94D;</option>
+      <option value="sat-IN">&#x1C65;&#x1C5F;&#x1C71;&#x1C5B;&#x1C62;&#x1C64;</option>
+      <option value="mni-IN">&#x9AE;&#x9A3;&#x9BF;&#x9AA;&#x9C1;&#x9B0;&#x9C0;</option>
+      <option value="sd-IN">&#x633;&#x646;&#x688;&#x64A;</option>
+      <option value="ks-IN">&#x6A9;&#x6C2;&#x634;&#x64F;&#x631;</option>
     </select>
     <span class="vst" id="vs">Tap to speak &#x2014; find schemes in your language</span>
   </div>
@@ -459,7 +474,53 @@ function cm(){document.getElementById('mb').classList.remove('on')}
 document.getElementById('mb').addEventListener('click',function(e){if(e.target===this)cm()})
 async function sn(e){e.preventDefault();const b=document.getElementById('mbtn');b.disabled=true;b.textContent='Saving...';try{const r=await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{Accept:'application/json'}});if(r.ok){document.getElementById('mok').classList.add('on');b.textContent='Done \u2713'}else{b.disabled=false;b.textContent='Notify me \u2192'}}catch{b.disabled=false;b.textContent='Notify me \u2192'}}
 let rec=null,alive=false;
-function tv(){const A=window.SpeechRecognition||window.webkitSpeechRecognition;if(!A){document.getElementById('vs').textContent='Use Chrome for voice';return}if(alive){rec.stop();return}rec=new A();rec.lang=document.getElementById('vl').value;rec.interimResults=false;rec.onstart=()=>{alive=true;document.getElementById('micBtn').classList.add('on');document.getElementById('vs').textContent='Listening...'};rec.onresult=ev=>{const t=ev.results[0][0].transcript;document.getElementById('vs').textContent='"'+t+'"';setTimeout(()=>{window.location.href='sarkar.html?q='+encodeURIComponent(t)},800)};rec.onerror=ev=>{document.getElementById('vs').textContent='Error: '+ev.error};rec.onend=()=>{alive=false;document.getElementById('micBtn').classList.remove('on')};rec.start()}
+const VMSG={
+en:{listen:"Listening\u2026",nospeech:"No speech detected. Please try again.",err:"Something went wrong. Please try again.",unsupported:"Voice not supported on this browser. Try Chrome.",heard:"Heard: "},
+hi:{listen:"\u0938\u0941\u0928 \u0930\u0939\u093e \u0939\u0942\u0902\u2026",nospeech:"\u0906\u0935\u093e\u091c\u093c \u0938\u0941\u0928\u093e\u0908 \u0928\u0939\u0940\u0902 \u0926\u0940\u0964 \u0915\u0943\u092a\u092f\u093e \u092b\u093f\u0930 \u0915\u094b\u0936\u093f\u0936 \u0915\u0930\u0947\u0902\u0964",err:"\u0915\u0941\u091b \u0917\u0921\u093c\u092c\u0921\u093c \u0939\u0941\u0908\u0964 \u0915\u0943\u092a\u092f\u093e \u092b\u093f\u0930 \u0915\u094b\u0936\u093f\u0936 \u0915\u0930\u0947\u0902\u0964",unsupported:"\u0907\u0938 \u092c\u094d\u0930\u093e\u0909\u091c\u093c\u0930 \u092e\u0947\u0902 \u0935\u0949\u0907\u0938 \u0938\u092a\u094b\u0930\u094d\u091f \u0928\u0939\u0940\u0902 \u0939\u0948\u0964 \u0915\u0943\u092a\u092f\u093e Chrome \u0906\u091c\u093c\u092e\u093e\u090f\u0902\u0964",heard:"\u0938\u0941\u0928\u093e: "},
+bn:{listen:"\u09b6\u09c1\u09a8\u099b\u09bf\u2026",nospeech:"\u0995\u09cb\u09a8\u09cb \u0995\u09a5\u09be \u09b6\u09cb\u09a8\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf\u0964 \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09c1\u09a8\u0964",err:"\u0995\u09bf\u099b\u09c1 \u09ad\u09c1\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964 \u0986\u09ac\u09be\u09b0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09b0\u09c1\u09a8\u0964",unsupported:"\u098f\u0987 \u09ac\u09cd\u09b0\u09be\u0989\u099c\u09be\u09b0\u09c7 \u09ad\u09af\u09bc\u09c7\u09b8 \u09b8\u09ae\u09b0\u09cd\u09a5\u09bf\u09a4 \u09a8\u09af\u09bc\u0964 Chrome \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09c1\u09a8\u0964",heard:"\u09b6\u09cb\u09a8\u09be \u0997\u09c7\u099b\u09c7: "},
+te:{listen:"\u0c35\u0c3f\u0c02\u0c1f\u0c41\u0c28\u0c4d\u0c28\u0c3e\u0c28\u0c41\u2026",nospeech:"\u0c2e\u0c3e\u0c1f \u0c35\u0c3f\u0c28\u0c3f\u0c2a\u0c3f\u0c02\u0c1a\u0c32\u0c47\u0c26\u0c41. \u0c26\u0c2f\u0c1a\u0c47\u0c38\u0c3f \u0c2e\u0c33\u0c4d\u0c33\u0c40 \u0c2a\u0c4d\u0c30\u0c2f\u0c24\u0c4d\u0c28\u0c3f\u0c02\u0c1a\u0c02\u0c21\u0c3f.",err:"\u0c0f\u0c26\u0c4b \u0c2a\u0c4a\u0c30\u0c2a\u0c3e\u0c1f\u0c41 \u0c1c\u0c30\u0c3f\u0c17\u0c3f\u0c02\u0c26\u0c3f. \u0c26\u0c2f\u0c1a\u0c47\u0c38\u0c3f \u0c2e\u0c33\u0c4d\u0c33\u0c40 \u0c2a\u0c4d\u0c30\u0c2f\u0c24\u0c4d\u0c28\u0c3f\u0c02\u0c1a\u0c02\u0c21\u0c3f.",unsupported:"\u0c08 \u0c2c\u0c4d\u0c30\u0c4c\u0c1c\u0c30\u0c4d\u200c\u0c32\u0c4b \u0c35\u0c3e\u0c2f\u0c3f\u0c38\u0c4d \u0c2e\u0c26\u0c4d\u0c26\u0c24\u0c41 \u0c32\u0c47\u0c26\u0c41. Chrome \u0c35\u0c3e\u0c21\u0c02\u0c21\u0c3f.",heard:"\u0c35\u0c3f\u0c28\u0c4d\u0c28\u0c26\u0c3f: "},
+mr:{listen:"\u0910\u0915\u0924 \u0906\u0939\u0947\u2026",nospeech:"\u0906\u0935\u093e\u091c \u0910\u0915\u0942 \u0906\u0932\u093e \u0928\u093e\u0939\u0940. \u0915\u0943\u092a\u092f\u093e \u092a\u0941\u0928\u094d\u0939\u093e \u092a\u094d\u0930\u092f\u0924\u094d\u0928 \u0915\u0930\u093e.",err:"\u0915\u093e\u0939\u0940\u0924\u0930\u0940 \u091a\u0941\u0915\u0932\u0947. \u0915\u0943\u092a\u092f\u093e \u092a\u0941\u0928\u094d\u0939\u093e \u092a\u094d\u0930\u092f\u0924\u094d\u0928 \u0915\u0930\u093e.",unsupported:"\u092f\u093e \u092c\u094d\u0930\u093e\u0909\u091d\u0930\u092e\u0927\u094d\u092f\u0947 \u0935\u094d\u0939\u0949\u0907\u0938 \u0938\u092a\u094b\u0930\u094d\u091f \u0928\u093e\u0939\u0940. Chrome \u0935\u093e\u092a\u0930\u093e.",heard:"\u0910\u0915\u0932\u0947: "},
+ta:{listen:"\u0b95\u0bc7\u0b9f\u0bcd\u0b95\u0bbf\u0bb1\u0bc7\u0ba9\u0bcd\u2026",nospeech:"\u0baa\u0bc7\u0b9a\u0bcd\u0b9a\u0bc1 \u0b95\u0bc7\u0b9f\u0bcd\u0b95\u0bb5\u0bbf\u0bb2\u0bcd\u0bb2\u0bc8. \u0bae\u0bc0\u0ba3\u0bcd\u0b9f\u0bc1\u0bae\u0bcd \u0bae\u0bc1\u0baf\u0bb1\u0bcd\u0b9a\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd.",err:"\u0b8f\u0ba4\u0bcb \u0ba4\u0bb5\u0bb1\u0bc1 \u0b8f\u0bb1\u0bcd\u0baa\u0b9f\u0bcd\u0b9f\u0ba4\u0bc1. \u0bae\u0bc0\u0ba3\u0bcd\u0b9f\u0bc1\u0bae\u0bcd \u0bae\u0bc1\u0baf\u0bb1\u0bcd\u0b9a\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd.",unsupported:"\u0b87\u0ba8\u0bcd\u0ba4 \u0b89\u0bb2\u0bbe\u0bb5\u0bbf\u0baf\u0bbf\u0bb2\u0bcd \u0b95\u0bc1\u0bb0\u0bb2\u0bcd \u0b86\u0ba4\u0bb0\u0bb5\u0bc1 \u0b87\u0bb2\u0bcd\u0bb2\u0bc8. Chrome \u0baa\u0baf\u0ba9\u0bcd\u0baa\u0b9f\u0bc1\u0ba4\u0bcd\u0ba4\u0bb5\u0bc1\u0bae\u0bcd.",heard:"\u0b95\u0bc7\u0b9f\u0bcd\u0b9f\u0ba4\u0bc1: "},
+gu:{listen:"\u0ab8\u0abe\u0a82\u0aad\u0ab3\u0ac0 \u0ab0\u0ab9\u0acd\u0aaf\u0acb \u0a9b\u0ac1\u0a82\u2026",nospeech:"\u0a85\u0ab5\u0abe\u0a9c \u0ab8\u0a82\u0aad\u0ab3\u0abe\u0aaf\u0acb \u0aa8\u0ab9\u0ac0\u0a82. \u0a95\u0ac3\u0aaa\u0abe \u0a95\u0ab0\u0ac0 \u0aab\u0ab0\u0ac0 \u0aaa\u0acd\u0ab0\u0aaf\u0aa4\u0acd\u0aa8 \u0a95\u0ab0\u0acb.",err:"\u0a95\u0a82\u0a88\u0a95 \u0a96\u0acb\u0a9f\u0ac1\u0a82 \u0aa5\u0aaf\u0ac1\u0a82. \u0a95\u0ac3\u0aaa\u0abe \u0a95\u0ab0\u0ac0 \u0aab\u0ab0\u0ac0 \u0aaa\u0acd\u0ab0\u0aaf\u0aa4\u0acd\u0aa8 \u0a95\u0ab0\u0acb.",unsupported:"\u0a86 \u0aac\u0acd\u0ab0\u0abe\u0a89\u0a9d\u0ab0\u0aae\u0abe\u0a82 \u0ab5\u0ac9\u0a87\u0ab8 \u0ab8\u0aaa\u0acb\u0ab0\u0acd\u0a9f\u0ac7\u0aa1 \u0aa8\u0aa5\u0ac0. Chrome \u0ab5\u0abe\u0aaa\u0ab0\u0acb.",heard:"\u0ab8\u0abe\u0a82\u0aad\u0ab3\u0acd\u0aaf\u0ac1\u0a82: "},
+kn:{listen:"\u0c95\u0cc7\u0cb3\u0cc1\u0ca4\u0ccd\u0ca4\u0cbf\u0ca6\u0ccd\u0ca6\u0cc7\u0ca8\u0cc6\u2026",nospeech:"\u0ca7\u0ccd\u0cb5\u0ca8\u0cbf \u0c95\u0cc7\u0cb3\u0cbf\u0cb8\u0cb2\u0cbf\u0cb2\u0ccd\u0cb2. \u0ca6\u0caf\u0cb5\u0cbf\u0c9f\u0ccd\u0c9f\u0cc1 \u0cae\u0ca4\u0ccd\u0ca4\u0cc6 \u0caa\u0ccd\u0cb0\u0caf\u0ca4\u0ccd\u0ca8\u0cbf\u0cb8\u0cbf.",err:"\u0c8f\u0ca8\u0ccb \u0ca4\u0caa\u0ccd\u0caa\u0cbe\u0c97\u0cbf\u0ca6\u0cc6. \u0ca6\u0caf\u0cb5\u0cbf\u0c9f\u0ccd\u0c9f\u0cc1 \u0cae\u0ca4\u0ccd\u0ca4\u0cc6 \u0caa\u0ccd\u0cb0\u0caf\u0ca4\u0ccd\u0ca8\u0cbf\u0cb8\u0cbf.",unsupported:"\u0c88 \u0cac\u0ccd\u0cb0\u0ccc\u0cb8\u0cb0\u0ccd\u200c\u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca7\u0ccd\u0cb5\u0ca8\u0cbf \u0cac\u0cc6\u0c82\u0cac\u0cb2\u0cb5\u0cbf\u0cb2\u0ccd\u0cb2. Chrome \u0cac\u0cb3\u0cb8\u0cbf.",heard:"\u0c95\u0cc7\u0cb3\u0cbf\u0ca6\u0ccd\u0ca6\u0cc1: "},
+pa:{listen:"\u0a38\u0a41\u0a23 \u0a30\u0a3f\u0a39\u0a3e \u0a39\u0a3e\u0a02\u2026",nospeech:"\u0a06\u0a35\u0a3e\u0a1c\u0a3c \u0a28\u0a39\u0a40\u0a02 \u0a38\u0a41\u0a23\u0a40\u0964 \u0a26\u0a41\u0a2c\u0a3e\u0a30\u0a3e \u0a15\u0a4b\u0a38\u0a3c\u0a3f\u0a38\u0a3c \u0a15\u0a30\u0a4b\u0964",err:"\u0a15\u0a41\u0a1d \u0a17\u0a32\u0a24 \u0a39\u0a4b \u0a17\u0a3f\u0a06\u0964 \u0a26\u0a41\u0a2c\u0a3e\u0a30\u0a3e \u0a15\u0a4b\u0a38\u0a3c\u0a3f\u0a38\u0a3c \u0a15\u0a30\u0a4b\u0964",unsupported:"\u0a07\u0a38 \u0a2c\u0a4d\u0a30\u0a3e\u0a0a\u0a1c\u0a3c\u0a30 \u0a35\u0a3f\u0a71\u0a1a \u0a35\u0a4c\u0a07\u0a38 \u0a38\u0a39\u0a3f\u0a2f\u0a4b\u0a17\u0a40 \u0a28\u0a39\u0a40\u0a02\u0964 Chrome \u0a35\u0a30\u0a24\u0a4b\u0964",heard:"\u0a38\u0a41\u0a23\u0a3f\u0a06: "},
+or:{listen:"\u0b36\u0b41\u0b23\u0b41\u0b1b\u0b3f\u2026",nospeech:"\u0b38\u0b4d\u0b71\u0b30 \u0b36\u0b41\u0b23\u0b3e\u0b17\u0b32\u0b3e \u0b28\u0b3e\u0b39\u0b3f\u0b01\u0964 \u0b26\u0b5f\u0b3e\u0b15\u0b30\u0b3f \u0b2a\u0b41\u0b23\u0b3f \u0b1a\u0b47\u0b37\u0b4d\u0b1f\u0b3e \u0b15\u0b30\u0b28\u0b4d\u0b24\u0b41\u0964",err:"\u0b15\u0b3f\u0b1b\u0b3f \u0b2d\u0b41\u0b32 \u0b39\u0b47\u0b32\u0b3e\u0964 \u0b26\u0b5f\u0b3e\u0b15\u0b30\u0b3f \u0b2a\u0b41\u0b23\u0b3f \u0b1a\u0b47\u0b37\u0b4d\u0b1f\u0b3e \u0b15\u0b30\u0b28\u0b4d\u0b24\u0b41\u0964",unsupported:"\u0b0f\u0b39\u0b3f \u0b2c\u0b4d\u0b30\u0b3e\u0b09\u0b1c\u0b30\u0b30\u0b47 \u0b2d\u0b0f\u0b38 \u0b38\u0b2a\u0b4b\u0b30\u0b4d\u0b1f \u0b28\u0b3e\u0b39\u0b3f\u0b01\u0964 Chrome \u0b2c\u0b4d\u0b5f\u0b2c\u0b39\u0b3e\u0b30 \u0b15\u0b30\u0b28\u0b4d\u0b24\u0b41\u0964",heard:"\u0b36\u0b41\u0b23\u0b3f\u0b32\u0b3f: "},
+ml:{listen:"\u0d15\u0d47\u0d7e\u0d15\u0d4d\u0d15\u0d41\u0d28\u0d4d\u0d28\u0d41\u2026",nospeech:"\u0d36\u0d2c\u0d4d\u0d26\u0d02 \u0d15\u0d47\u0d1f\u0d4d\u0d1f\u0d3f\u0d32\u0d4d\u0d32. \u0d26\u0d2f\u0d35\u0d3e\u0d2f\u0d3f \u0d35\u0d40\u0d23\u0d4d\u0d1f\u0d41\u0d02 \u0d36\u0d4d\u0d30\u0d2e\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15.",err:"\u0d0e\u0d28\u0d4d\u0d24\u0d4b \u0d24\u0d46\u0d31\u0d4d\u0d31\u0d4d \u0d38\u0d02\u0d2d\u0d35\u0d3f\u0d1a\u0d4d\u0d1a\u0d41. \u0d26\u0d2f\u0d35\u0d3e\u0d2f\u0d3f \u0d35\u0d40\u0d23\u0d4d\u0d1f\u0d41\u0d02 \u0d36\u0d4d\u0d30\u0d2e\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15.",unsupported:"\u0d08 \u0d2c\u0d4d\u0d30\u0d57\u0d38\u0d31\u0d3f\u0d7d \u0d35\u0d4b\u0d2f\u0d4d\u0d38\u0d4d \u0d2a\u0d3f\u0d28\u0d4d\u0d24\u0d41\u0d23\u0d2f\u0d3f\u0d32\u0d4d\u0d32. Chrome \u0d09\u0d2a\u0d2f\u0d4b\u0d17\u0d3f\u0d15\u0d4d\u0d15\u0d41\u0d15.",heard:"\u0d15\u0d47\u0d1f\u0d4d\u0d1f\u0d24\u0d4d: "},
+as:{listen:"\u09b6\u09c1\u09a8\u09bf \u0986\u099b\u09cb\u0981\u2026",nospeech:"\u09ae\u09be\u09a4 \u09b6\u09c1\u09a8\u09be \u09a8\u0997'\u09b2\u0964 \u0985\u09a8\u09c1\u0997\u09cd\u09f0\u09b9 \u0995\u09f0\u09bf \u09aa\u09c1\u09a8\u09f0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09f0\u0995\u0964",err:"\u0995\u09bf\u09ac\u09be \u09ad\u09c1\u09b2 \u09b9'\u09b2\u0964 \u0985\u09a8\u09c1\u0997\u09cd\u09f0\u09b9 \u0995\u09f0\u09bf \u09aa\u09c1\u09a8\u09f0 \u099a\u09c7\u09b7\u09cd\u099f\u09be \u0995\u09f0\u0995\u0964",unsupported:"\u098f\u0987 \u09ac\u09cd\u09f0\u09be\u0989\u099c\u09be\u09f0\u09a4 \u09ad\u0987\u099a \u09b8\u09ae\u09f0\u09cd\u09a5\u09a8 \u09a8\u09be\u0987\u0964 Chrome \u09ac\u09cd\u09af\u09f1\u09b9\u09be\u09f0 \u0995\u09f0\u0995\u0964",heard:"\u09b6\u09c1\u09a8\u09bf\u09b2\u09cb\u0981: "},
+ur:{listen:"\u0633\u0646 \u0631\u06c1\u0627 \u06c1\u0648\u06ba\u2026",nospeech:"\u0622\u0648\u0627\u0632 \u0633\u0646\u0627\u0626\u06cc \u0646\u06c1\u06cc\u06ba \u062f\u06cc\u06d4 \u0628\u0631\u0627\u06c1 \u06a9\u0631\u0645 \u062f\u0648\u0628\u0627\u0631\u06c1 \u06a9\u0648\u0634\u0634 \u06a9\u0631\u06cc\u06ba\u06d4",err:"\u06a9\u0686\u06be \u063a\u0644\u0637 \u06c1\u0648 \u06af\u06cc\u0627\u06d4 \u0628\u0631\u0627\u06c1 \u06a9\u0631\u0645 \u062f\u0648\u0628\u0627\u0631\u06c1 \u06a9\u0648\u0634\u0634 \u06a9\u0631\u06cc\u06ba\u06d4",unsupported:"\u0627\u0633 \u0628\u0631\u0627\u0624\u0632\u0631 \u0645\u06cc\u06ba \u0648\u0627\u0626\u0633 \u0633\u067e\u0648\u0631\u0679 \u0646\u06c1\u06cc\u06ba \u06c1\u06d2\u06d4 Chrome \u0627\u0633\u062a\u0639\u0645\u0627\u0644 \u06a9\u0631\u06cc\u06ba\u06d4",heard:"\u0633\u0646\u0627: "},
+ne:{listen:"\u0938\u0941\u0928\u094d\u0926\u0948\u091b\u0941\u2026",nospeech:"\u0906\u0935\u093e\u091c \u0938\u0941\u0928\u093f\u090f\u0928\u0964 \u0915\u0943\u092a\u092f\u093e \u092b\u0947\u0930\u093f \u092a\u094d\u0930\u092f\u093e\u0938 \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d\u0964",err:"\u0915\u0947\u0939\u0940 \u0917\u0921\u092c\u0921 \u092d\u092f\u094b\u0964 \u0915\u0943\u092a\u092f\u093e \u092b\u0947\u0930\u093f \u092a\u094d\u0930\u092f\u093e\u0938 \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d\u0964",unsupported:"\u092f\u094b \u092c\u094d\u0930\u093e\u0909\u091c\u0930\u092e\u093e \u092d\u094d\u0935\u093e\u0907\u0938 \u0938\u092e\u0930\u094d\u0925\u093f\u0924 \u091b\u0948\u0928\u0964 Chrome \u092a\u094d\u0930\u092f\u094b\u0917 \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d\u0964",heard:"\u0938\u0941\u0928\u093f\u092f\u094b: "},
+sa:{listen:"\u0936\u0943\u0923\u094b\u092e\u093f\u2026",nospeech:"\u0935\u093e\u0915\u094d \u0928 \u0936\u094d\u0930\u0941\u0924\u093e\u0964 \u0915\u0943\u092a\u092f\u093e \u092a\u0941\u0928\u0903 \u092a\u094d\u0930\u092f\u0924\u0938\u094d\u0935\u0964",err:"\u0915\u093f\u092e\u092a\u093f \u0926\u094b\u0937\u0903 \u091c\u093e\u0924\u0903\u0964 \u0915\u0943\u092a\u092f\u093e \u092a\u0941\u0928\u0903 \u092a\u094d\u0930\u092f\u0924\u0938\u094d\u0935\u0964",unsupported:"\u0905\u0938\u094d\u092e\u093f\u0928\u094d \u092c\u094d\u0930\u093e\u0909\u091c\u093c\u0930\u0947 \u0927\u094d\u0935\u0928\u093f\u0938\u092e\u0930\u094d\u0925\u0928\u0902 \u0928\u093e\u0938\u094d\u0924\u093f\u0964 Chrome \u0909\u092a\u092f\u0941\u091c\u094d\u092f\u0924\u093e\u092e\u094d\u0964",heard:"\u0936\u094d\u0930\u0941\u0924\u092e\u094d: "},
+};
+const VMSG_FB={mai:"hi",kok:"hi",doi:"hi",mni:"en",sat:"en",sd:"en",ks:"en"};
+function getVMSG(c){return VMSG[c]||VMSG[VMSG_FB[c]]||VMSG.en}
+function uvl(){const o=document.getElementById('vl');document.getElementById('vlbl').textContent=o.selectedOptions[0].textContent}
+function tv(){
+  const A=window.SpeechRecognition||window.webkitSpeechRecognition;
+  const vl=document.getElementById('vl').value;
+  const code=vl.split('-')[0].toLowerCase();
+  const M=getVMSG(code);
+  const vs=document.getElementById('vs'),mb=document.getElementById('micBtn');
+  if(!A){vs.textContent=M.unsupported;return}
+  if(alive){rec.stop();return}
+  rec=new A();
+  rec.lang=vl;
+  rec.continuous=false;
+  rec.interimResults=false;
+  rec.maxAlternatives=1;
+  rec.onstart=()=>{alive=true;mb.classList.add('on');vs.innerHTML='<span class="livedot"></span>'+M.listen};
+  rec.onresult=ev=>{
+    const t=ev.results[0][0].transcript;
+    rec.stop();
+    vs.textContent=M.heard+'"'+t+'"';
+    setTimeout(()=>{window.location.href='sarkar.html?q='+encodeURIComponent(t)+'&lang='+encodeURIComponent(code)},800);
+  };
+  rec.onerror=ev=>{
+    alive=false;mb.classList.remove('on');
+    vs.textContent=ev.error==='no-speech'?M.nospeech:M.err;
+  };
+  rec.onend=()=>{alive=false;mb.classList.remove('on')};
+  rec.start();
+}
 </script>
 </body>
 </html>
