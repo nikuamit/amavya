@@ -421,7 +421,9 @@ footer p+p{margin-top:.4rem}
     </div>
     <div class="iform">
       <h3>Request our pitch deck</h3>
-      <form id="pf" action="https://formspree.io/f/REPLACE_INVEST_ID" method="POST" onsubmit="dp(event)">
+      <!-- Using the same Formspree endpoint as the main portfolio contact form (verified working).
+           Swap in a dedicated Formspree form ID here if you want investor leads in a separate inbox/view. -->
+      <form id="pf" action="https://formspree.io/f/xpwzgnjv" method="POST" onsubmit="dp(event)">
         <input type="hidden" name="_subject" value="Amavya Investor Inquiry">
         <div class="fld"><label>Your name</label><input type="text" name="name" placeholder="Priya Mehta" required></div>
         <div class="fld"><label>Organisation</label><input type="text" name="org" placeholder="Blume Ventures" required></div>
